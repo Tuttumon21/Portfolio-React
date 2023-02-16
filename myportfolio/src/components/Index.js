@@ -4,6 +4,7 @@ import Categorycard from "./Categorycard";
 import Navbar from "./Navbar";
 import Browserall from "./text/Browserall";
 import Introtext from "./text/Introtext";
+import Profiletext from "./text/Profiletext";
 import Welcometext from "./text/Welcometext";
 
 const Index = () => {
@@ -14,6 +15,7 @@ const Index = () => {
       <Introtext/>
       <Browserall/>
       <Categorycard />
+      <Profiletext/>
     </div>
   );
 };

@@ -2,11 +2,12 @@ import React from "react";
 
 const Category = (props) => {
   return (
-    <div>
+    
       <section>
-        <div class="mx-auto flex w-80 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-gray-400/20">
+        <div class="mx-auto flex w-64 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-gray-400/20">
+          <a href={props.href}>
           <img
-            class="aspect-video w-80 rounded-t-2xl object-cover object-center"
+            class="aspect-video w-64 rounded-t-2xl object-cover object-center"
             src={props.lnk}
             alt="img"
           />
@@ -19,9 +20,10 @@ const Category = (props) => {
               {props.desc}
             </p>
           </div>
+          </a>
         </div>
       </section>
-    </div>
+    
   );
 };
 
