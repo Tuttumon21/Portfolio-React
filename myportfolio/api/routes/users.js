@@ -1,25 +1,11 @@
-// var express = require('express');
-// var router = express.Router();
 
-// /* GET users listing. */
-// router.get('/', function(req, res, next) {
-//   res.send('respond with a resource');
-// });
-
-// module.exports = router;
 
 const express = require("express");
- 
-// recordRoutes is an instance of the express router.
-// We use it to define our routes.
-// The router will be added as a middleware and will take control of requests starting with path /record.
 const userRoutes = express.Router();
- 
-// This will help us connect to the database
 const dbo = require("../db/conn");
- 
-// This help convert the id from string to ObjectId for the _id.
 const ObjectId = require("mongodb").ObjectId;
+const jwt = require("jsonwebtoken");
+const config = require("config");
  
  
 // This section will help you get a list of all the records.
@@ -45,11 +31,47 @@ userRoutes.route("/user/:id").get(function (req, res) {
      res.json(result);
    });
 });
+
+userRoutes.route("/user/login").post(function (req, res) {
+  let db_connect = dbo.getDb();
+  const {email,password} = req.body;
+  let myquery = { email: email };
+  
+  db_connect
+    .collection("users")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      if(result.password === password){
+
+        jwt.sign(
+          {
+            name: result.firstname,
+          },
+          config.get("jwtSecret"),
+          { expiresIn: 60 * 60 },
+          (err, token) => {
+            if (err) {
+              return res.status(400).json({ msg: "Login Failed.", err });
+            }
+            return res.status(200).json({
+              firstname: result.firstname,
+              email: result.email,
+              token,
+              msg: "Login Successful.",
+            });
+          }
+        );
+      // res.status(200).json(result);
+      }
+    });
+ });
  
 // This section will help you create a new record.
 userRoutes.route("/user/add").post(function (req, response) {
  let db_connect = dbo.getDb();
  let myobj = {
+  firstname: req.body.firstname,
+  lastname: req.body.lastname,
    email: req.body.email,
    password: req.body.password,
 

@@ -5,6 +5,8 @@ import { Login } from "./components/Login";
 import  Test  from "./components/Test";
 import ProfileForm from "./components/forms/ProfileForm";
 import AboutForm from "./components/forms/AboutForm";
+import Services from "./components/Services";
+import Index from "./components/Index";
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/login" element={<Login />} />
       <Route path="/test" element={<Test/>}/>
+      <Route path="/Index" element={<Index/>}/>
       <Route path="/ProfileForm" element={<ProfileForm/>}/>
       <Route path="/AboutForm" element={<AboutForm/>}/>
+      <Route path="/services" element={<Services/>}/>
 
     </Routes>
   );
