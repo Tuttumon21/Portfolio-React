@@ -2,6 +2,7 @@ import React from "react";
 
 import Categorycard from "./Categorycard";
 import Navbar from "./Navbar";
+import Profilescard from "./Profilescard";
 import Browserall from "./text/Browserall";
 import Introtext from "./text/Introtext";
 import Profiletext from "./text/Profiletext";
@@ -16,6 +17,7 @@ const Index = () => {
       <Browserall/>
       <Categorycard />
       <Profiletext/>
+      <Profilescard/>
     </div>
   );
 };

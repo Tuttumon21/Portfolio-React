@@ -7,6 +7,7 @@ import ProfileForm from "./components/forms/ProfileForm";
 import AboutForm from "./components/forms/AboutForm";
 import Services from "./components/Services";
 import Index from "./components/Index";
+import TabsProfile from "./components/TabsProfile";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <Route path="/ProfileForm" element={<ProfileForm/>}/>
       <Route path="/AboutForm" element={<AboutForm/>}/>
       <Route path="/services" element={<Services/>}/>
+      <Route path="/Profile" element={<TabsProfile/>}/>
 
     </Routes>
   );

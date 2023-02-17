@@ -8,7 +8,7 @@ function Navbarlog() {
   const [state,setState] = useState(false)
   
   const CompToggle = () =>{
-    return state===true?<Login/>:<Register/>
+    return state===true?<Login  setState={setState}/>:<Register setState={setState}/>
   }
   return (
     <div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-export const Register = () => {
+export const Register = ({setState}) => {
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
@@ -20,16 +20,21 @@ export const Register = () => {
 
     const newPerson = { ...form };
 
-    await fetch("http://localhost:5000/user/add", {
+    const response = await fetch("http://localhost:5000/user/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(newPerson),
-    }).catch((error) => {
-      window.alert(error);
-      return;
-    });
+    })
+    if (!response.ok) {
+      const err = await response.json();
+      console.log("Looks like there was a problem.", err);
+      alert(err.msg)
+      return;      
+    }else{
+      setState(true)
+    }
     setForm({ firstname: "", lastname: "", email: "", password: "" });
   }
 

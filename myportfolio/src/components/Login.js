@@ -33,6 +33,7 @@ export const Login = () => {
         console.log(localStorage.getItem("user"));
         //setIsLoggedIn(true);
         navigate('/Index', { replace: true });
+        // alert("login Successfully");
       }
     } catch (err) {
       console.log(err);
