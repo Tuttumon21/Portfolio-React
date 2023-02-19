@@ -4,10 +4,10 @@ const Category = (props) => {
   return (
     
       <section>
-        <div class="mx-auto flex w-64 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-gray-400/20">
+        <div class="mx-auto flex w-56 flex-col justify-center bg-white rounded-2xl shadow-xl shadow-gray-400/20">
           <a href={props.href}>
           <img
-            class="aspect-video w-64 rounded-t-2xl object-cover object-center"
+            class="aspect-video w-56 rounded-t-2xl object-cover object-center"
             src={props.lnk}
             alt="img"
           />

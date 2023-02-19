@@ -1,7 +1,6 @@
 import React from "react";
-import avater from "./avater image1.jpeg";
 
-const ProfileForm = () => {
+const ServicesForm = () => {
   return (
     <>
       <div className="mt-10 mx-7 sm:mt-0">
@@ -9,21 +8,10 @@ const ProfileForm = () => {
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">
-                Personal Information
+                Services Information
               </h3>
-              <p className="mb-7 mt-1 text-sm text-gray-600">
-                Enter Your Profile Details
-              </p>
-              <img
-                src={avater}
-                alt="profilePic"
-                class="mx-auto object-cover rounded-full h-40 w-40 "
-              />
-              <p class="text-center text-2xl text-gray-800 dark:text-white">
-                JETT
-              </p>
-              <p class="text-center text-xl font-light text-gray-500 dark:text-gray-200">
-                Valorant Duelist
+              <p className="mt-1 text-sm text-gray-600">
+                Enter Details about your services or what you do
               </p>
             </div>
           </div>
@@ -37,7 +25,7 @@ const ProfileForm = () => {
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        First name
+                        #1 Service Name
                       </label>
                       <input
                         type="text"
@@ -45,6 +33,7 @@ const ProfileForm = () => {
                         id="first-name"
                         autoComplete="given-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        required
                       />
                     </div>
 
@@ -53,65 +42,15 @@ const ProfileForm = () => {
                         htmlFor="last-name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Last name
+                        #1 Service Description
                       </label>
-                      <input
+                      <textarea
                         type="text"
                         name="last-name"
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="last-name"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Job Title
-                      </label>
-                      <input
-                        type="text"
-                        name="last-name"
-                        id="last-name"
-                        autoComplete="family-name"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
-                    </div>
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="country"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Job Category
-                      </label>
-                      <select
-                        id="country"
-                        name="country"
-                        autoComplete="country-name"
-                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                      >
-                        <option selected>Select</option>
-                        <option value="US">Developer</option>
-                        <option value="CA">UI/UX Designer</option>
-                        <option value="FR">Doctor</option>
-                        <option value="DE">Engineer</option>
-                      </select>
-                    </div>
-
-                    <div className="col-span-6 sm:col-span-3">
-                      <label
-                        htmlFor="email-address"
-                        className="block text-sm font-medium text-gray-700"
-                      >
-                        Email address
-                      </label>
-                      <input
-                        type="text"
-                        name="email-address"
-                        id="email-address"
-                        autoComplete="email"
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        required
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-3">
@@ -119,23 +58,23 @@ const ProfileForm = () => {
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Profile Picture
+                        #2 Service Name
                       </label>
                       <input
-                        type="file"
+                        type="text"
                         name="first-name"
                         id="first-name"
                         autoComplete="given-name"
-                        accept=".jpg, .jpeg, .png"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div className="col-span-6 sm:col-span-6">
+
+                    <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="last-name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Profile Intro Description
+                        #2 Service Description
                       </label>
                       <textarea
                         type="text"
@@ -145,7 +84,39 @@ const ProfileForm = () => {
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div className="col-span-6 sm:col-span-6">
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="first-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        #3 Service Name
+                      </label>
+                      <input
+                        type="text"
+                        name="first-name"
+                        id="first-name"
+                        autoComplete="given-name"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="last-name"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        #3 Service Description
+                      </label>
+                      <textarea
+                        type="text"
+                        name="last-name"
+                        id="last-name"
+                        autoComplete="family-name"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                      />
+                    </div>
+
+                    <div className="col-span-6 sm:col-span-3">
                       <label
                         htmlFor="country"
                         className="block text-sm font-medium text-gray-700"
@@ -160,6 +131,7 @@ const ProfileForm = () => {
                       >
                         <option>Style #1</option>
                         <option>Style #2</option>
+                        <option>Style #3</option>
                       </select>
                     </div>
                   </div>
@@ -181,4 +153,4 @@ const ProfileForm = () => {
   );
 };
 
-export default ProfileForm;
+export default ServicesForm;

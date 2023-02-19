@@ -4,6 +4,9 @@ import ProfileForm from "./forms/ProfileForm";
 import Navbar from "./Navbar";
 import {useState} from 'react'
 import AboutForm from "./forms/AboutForm";
+import ServicesForm from "./forms/ServicesForm";
+import ExperienceForm from "./forms/ExperienceForm";
+import ContactForm from "./forms/ContactForm";
 
 function TabsProfile() {
 
@@ -16,6 +19,15 @@ function TabsProfile() {
         if(state===1){
             return (<AboutForm/>)
         }
+        if(state===2){
+          return (<ServicesForm/>)
+      }
+      if(state===3){
+        return (<ExperienceForm/>)
+    }
+    if(state===4){
+      return (<ContactForm/>)
+  }
 
     }
   return (
@@ -39,7 +51,7 @@ function TabsProfile() {
               aria-controls="profile"
               aria-selected="false"
             >
-              Profile
+              Intro
             </button>
           </li>
           <li class="mr-2" role="presentation">
@@ -52,11 +64,11 @@ function TabsProfile() {
               aria-controls="dashboard"
               aria-selected="false"
             >
-              Dashboard
+              About Me
             </button>
           </li>
           <li class="mr-2" role="presentation">
-            <button
+            <button onClick={ () => {setState(2)}}
               class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-gray-300 dark:hover:text-gray-300"
               id="settings-tab"
               data-tabs-target="#settings"
@@ -65,11 +77,24 @@ function TabsProfile() {
               aria-controls="settings"
               aria-selected="false"
             >
-              Settings
+              Services
+            </button>
+          </li>
+          <li class="mr-2" role="presentation">
+            <button onClick={ () => {setState(3)}}
+              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-gray-300 dark:hover:text-gray-300"
+              id="settings-tab"
+              data-tabs-target="#settings"
+              type="button"
+              role="tab"
+              aria-controls="settings"
+              aria-selected="false"
+            >
+              Experience
             </button>
           </li>
           <li role="presentation">
-            <button
+            <button onClick={ () => {setState(4)}}
               class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-gray-300 dark:hover:text-gray-300"
               id="contacts-tab"
               data-tabs-target="#contacts"

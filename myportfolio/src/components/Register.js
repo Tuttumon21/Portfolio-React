@@ -284,6 +284,7 @@ export const Register = ({setState}) => {
                           onChange={(e) =>  updateForm({  firstname: e.target.value})}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="Name"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -304,6 +305,7 @@ export const Register = ({setState}) => {
                           onChange={(e) =>  updateForm({  lastname: e.target.value})}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="Name"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -325,7 +327,9 @@ export const Register = ({setState}) => {
                          value={form.email}
                          onChange={(e) => updateForm({ email: e.target.value })}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="Name@email.com"
+                          placeholder="Name@gmail.com"
+                          pattern=".+@gmail.com"
+                          required
                         ></input>
                       </div>
                     </div>
@@ -347,6 +351,8 @@ export const Register = ({setState}) => {
                           onChange={(e) => updateForm({ password: e.target.value })}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="************"
+                          minlength="4"
+                          required
                         ></input>
                       </div>
                     </div>
