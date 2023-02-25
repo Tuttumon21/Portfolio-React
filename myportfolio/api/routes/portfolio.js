@@ -3,17 +3,17 @@ const portRoutes = express.Router();
 const dbo = require("../db/conn");
 const ObjectId = require("mongodb").ObjectId;
 const config = require("config");
+const multer = require("multer");
+const upload = multer({ dest: "./public/images"});
 
 // This section will help you get a list of all the records.
-portRoutes.route("/user").get(function (req, res) {
+portRoutes.route("/portfolio/details/:email").get(function (req, res) {
   let db_connect = dbo.getDb("myportfolio");
-  db_connect
-    .collection("users")
-    .find({})
-    .toArray(function (err, result) {
-      if (err) throw err;
-      res.json(result);
-    });
+  let myquery = { uEmail: req.params.email};
+  db_connect.collection("portfolio").findOne(myquery, function (err, result) {
+    if (err) throw err;
+    res.status(200).json(result);
+  });
 });
 
 // This section will help you get a single record by id
@@ -60,26 +60,43 @@ portRoutes.route("/user/login").post(function (req, res) {
 });
 
 // This section will help you create a new record.
-portRoutes.route("/user/add").post(function (req, response) {
+portRoutes.route("/portfolio/add").post(function (req, response) {
   let db_connect = dbo.getDb();
-  let myobj = {
-    firstname: req.body.firstname,
-    lastname: req.body.lastname,
-    email: req.body.email,
-    password: req.body.password,
-  };
-  let myquery = { email: req.body.email };
-  db_connect.collection("users").findOne(myquery, function (err, result) {
-    if (result) {
-      return response.status(400).json({ msg: "Email already exists." });
-    } else {
-      db_connect.collection("users").insertOne(myobj, function (err, res) {
+  // upload.single("userAvatar"),
+  const userData = {...req.body}
+  // ,proPic:"http://localhost:5000/public/images/"+req.file.filename
+      db_connect.collection("portfolio").insertOne(userData, function (err, res) {
         if (err) throw err;
         response.status(200).json(res);
       });
-    }
+    
   });
-});
+
+  portRoutes.route("/portfolio/update/about/:uEmail").post( function (req, response) {
+    // portRoutes.route("/portfolio/add/about/:email").post( function (req, response) {
+    
+    let db_connect = dbo.getDb();
+    console.log(req.params.uEmail)
+    console.log(req.body)
+    let myquery = { _uEmail: (req.params.email) };
+    let newvalues = {
+      $set: {
+        aboutDesc: req.body.aboutDesc,
+        aboutStyle: req.body.aboutStyle
+      },
+    };
+    // const userData = {...req.body,proPic:"http://localhost:5000/public/images/"+req.file.filename}
+  
+    db_connect
+    .collection("portfolio")
+    .updateOne(myquery, newvalues, function (err, res) {
+      if (err) throw err;
+      console.log("1 document updated");
+      response.status(200).json(res);
+      response.status(200).send("about details added");
+    });
+    });
+
 
 // This section will help you update a record by id.
 portRoutes.route("/update/:id").post(function (req, response) {

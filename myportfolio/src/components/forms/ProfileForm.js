@@ -1,7 +1,40 @@
-import React from "react";
-import avater from "./avater image1.jpeg";
+import React,{useState} from "react";
+// import avater from "./avater image1.jpeg";
+import { useForm } from 'react-hook-form';
 
 const ProfileForm = () => {
+  const { register, handleSubmit} = useForm();
+  const user = localStorage.getItem("email");
+  const [category,setCategory] = useState('');
+
+  const saveForm = async (data) => {
+
+    const formdata = {...data,"uEmail":user};
+    // console.log(data)
+    const url = 'http://localhost:5000/portfolio/add';
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+        body: JSON.stringify(formdata)
+    })
+
+    if (!response.ok) {
+        const err = await response.json();
+        console.log('Looks like there was a problem.',
+            err);
+            // console.log(err.msg);
+            // setSignMsg(err.msg);
+        return;
+    } else {
+        const data = await response.json();
+        alert("profile added")
+    }
+}
+
+
   return (
     <>
       <div className="mt-10 mx-7 sm:mt-0">
@@ -15,7 +48,7 @@ const ProfileForm = () => {
                 Enter Your Profile Details
               </p>
               <img
-                src={avater}
+                src=""
                 alt="profilePic"
                 class="mx-auto object-cover rounded-full h-40 w-40 "
               />
@@ -28,7 +61,8 @@ const ProfileForm = () => {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form onSubmit={handleSubmit(saveForm)} enctype="multipart/form-data">
+            
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -41,8 +75,9 @@ const ProfileForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="firstname"
+                        id="firstname"
+                        {...register("firstname", { required: true })}
                         autoComplete="given-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -57,8 +92,9 @@ const ProfileForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="lastname"
+                        id="lastname"
+                        {...register("lastname", { required: true })}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -72,8 +108,9 @@ const ProfileForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="jobtitle"
+                        id="jobtitle"
+                        {...register("jobtitle", { required: true })}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -86,16 +123,39 @@ const ProfileForm = () => {
                         Job Category
                       </label>
                       <select
-                        id="country"
-                        name="country"
+                        id="jobcat"
+                        name="category"
+                        {...register("category", { required: true })}
+                        onChange={e => setCategory(e.target.value)} 
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
                         <option selected>Select</option>
-                        <option value="US">Developer</option>
-                        <option value="CA">UI/UX Designer</option>
-                        <option value="FR">Doctor</option>
-                        <option value="DE">Engineer</option>
+                        <option value="Software">Software</option>
+                        <option value="Entertainment">Entertaiment</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Medical">Medical</option>
+                        <option value="Education">Education</option>
+                      </select>
+                    </div>
+                    <div className="col-span-6 sm:col-span-3">
+                      <label
+                        htmlFor="country"
+                        className="block text-sm font-medium text-gray-700"
+                      >
+                        Job Field
+                      </label>
+                      <select
+                        id="jobcat"
+                        name="category"
+                        // onClick={()}
+                        {...register("category", { required: true })}
+                        autoComplete="country-name"
+                        className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                      >
+                        <option selected>Select</option>
+                      
+                        
                       </select>
                     </div>
 
@@ -108,13 +168,14 @@ const ProfileForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="email-address"
+                        name="email"
+                        {...register("email", { required: true })}
                         id="email-address"
                         autoComplete="email"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
-                    <div className="col-span-6 sm:col-span-3">
+                    <div className="col-span-6 sm:col-span-6">
                       <label
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
@@ -123,8 +184,8 @@ const ProfileForm = () => {
                       </label>
                       <input
                         type="file"
-                        name="first-name"
-                        id="first-name"
+                        name="userAvatar"
+                        id="userAvatar"
                         autoComplete="given-name"
                         accept=".jpg, .jpeg, .png"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -139,7 +200,8 @@ const ProfileForm = () => {
                       </label>
                       <textarea
                         type="text"
-                        name="last-name"
+                        name="desc"
+                        {...register("desc", { required: true })}
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -154,12 +216,13 @@ const ProfileForm = () => {
                       </label>
                       <select
                         id="country"
-                        name="country"
+                        name="style"
+                        {...register("style", { required: true })}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
-                        <option>Style #1</option>
-                        <option>Style #2</option>
+                        <option selected value="1">Style #1</option>
+                        <option value="2">Style #2</option>
                       </select>
                     </div>
                   </div>

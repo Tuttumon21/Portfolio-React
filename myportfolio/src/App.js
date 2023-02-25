@@ -8,6 +8,7 @@ import AboutForm from "./components/forms/AboutForm";
 import Services from "./components/Services";
 import Index from "./components/Index";
 import TabsProfile from "./components/TabsProfile";
+import Myportfolio from "./components/Myportfolio";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route path="/AboutForm" element={<AboutForm/>}/>
       <Route path="/services" element={<Services/>}/>
       <Route path="/Profile" element={<TabsProfile/>}/>
+      <Route path="/myportfolio" element={<Myportfolio/>}/>
 
     </Routes>
   );

@@ -9,6 +9,8 @@ import Introtext from "./text/Introtext";
 import Welcometext from "./text/Welcometext";
 
 const Index = () => {
+
+  
   return (
     <div className="Index">
       <Navbar />
