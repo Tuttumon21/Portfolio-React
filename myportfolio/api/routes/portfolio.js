@@ -197,6 +197,37 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       });
       });
 
+       // This section will help you update a Contacts record by uEmail
+
+    portRoutes.route("/portfolio/update/contacts/:uEmail").post( function (req, response) {
+            
+      let db_connect = dbo.getDb();
+      console.log(req.params.uEmail)
+      console.log(req.body)
+      let myquery = { uEmail: (req.params.uEmail) };
+      let newvalues = {
+        $set: {
+          snapchat: req.body.snapchat,
+          phoneNumber: req.body.phoneNumber,
+          linkedin: req.body.linkedin,
+          facebook: req.body.facebook,
+          twitter: req.body.twitter,
+          instagram: req.body.instagram,
+          youtube: req.body.youtube,
+          contactsStyle: req.body.contactsStyle
+        },
+      };
+
+      db_connect
+      .collection("portfolio")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+        response.status(200).json(res);
+        // response.status(200).send("Experience details added");
+      });
+      });
+
 // This section will help you update a record by id.
 portRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();

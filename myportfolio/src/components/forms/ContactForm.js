@@ -1,6 +1,36 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
+  const { register, handleSubmit } = useForm();
+  const user = localStorage.getItem("email");
+  console.log(user);
+
+  const saveForm = async (data) => {
+    const formdata = { ...data, uEmail: user };
+    const url = "http://localhost:5000/portfolio/update/contacts/" + user;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      // body: JSON.stringify(data)
+      body: JSON.stringify(formdata),
+    });
+
+    if (!response.ok) {
+      const err = await response.json();
+      console.log("Looks like there was a problem.", err);
+      // console.log(err.msg);
+      // setSignMsg(err.msg);
+      return;
+    } else {
+      const data = await response.json();
+      alert("Contacts Updated...");
+    }
+  };
+
   return (
     <>
       <div className="mt-10 mx-7 sm:mt-0">
@@ -16,7 +46,7 @@ const ContactForm = () => {
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form action="#" method="POST">
+            <form onSubmit={handleSubmit(saveForm)}>
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -25,14 +55,15 @@ const ContactForm = () => {
                         htmlFor="email-address"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Email address
+                        Snapchat
                       </label>
                       <input
                         type="text"
-                        name="email-address"
-                        id="email-address"
+                        name="Snapchat"
+                        id="Snapchat"
+                        {...register("Snapchat")}
                         autoComplete="email"
-                        placeholder="yourname@email.com"
+                        // placeholder="yourname@email.com"
                         // pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -46,8 +77,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="tel"
-                        name="email-address"
-                        id="email-address"
+                        name="phoneNumber"
+                        id="phoneNumber"
+                        {...register("phoneNumber")}
                         autoComplete="email"
                         placeholder="1234 456 789"
                         pattern="[0-9]{10}"
@@ -65,8 +97,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="first-name"
-                        id="first-name"
+                        name="linkedin"
+                        id="linkedin"
+                        {...register("linkedin")}
                         autoComplete="given-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -81,8 +114,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="facebook"
+                        id="facebook"
+                        {...register("facebook")}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -96,8 +130,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="twitter"
+                        id="twitter"
+                        {...register("twitter")}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -111,8 +146,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="instagram"
+                        id="instagram"
+                        {...register("instagram")}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -126,8 +162,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="last-name"
-                        id="last-name"
+                        name="youtube"
+                        id="youtube"
+                        {...register("youtube")}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -141,14 +178,14 @@ const ContactForm = () => {
                         Choose Style
                       </label>
                       <select
-                        id="country"
-                        name="country"
+                        id="contactsStyle"
+                        name="contactsStyle"
+                        {...register("contactsStyle", { required: true })}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
                         <option>Style #1</option>
                         <option>Style #2</option>
-                        <option>Style #3</option>
                       </select>
                     </div>
                   </div>
