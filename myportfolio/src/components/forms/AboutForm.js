@@ -1,10 +1,11 @@
 import React from "react";
 import { useForm } from 'react-hook-form';
+import ProfilePreview from "./ProfilePreview";
 // import picture from "./avater image2.jpeg";
 const AboutForm = () => {
   const { register, handleSubmit} = useForm();
   const user = localStorage.getItem("email");
-
+console.log(user)
 
   const saveForm = async (data) => {
 
@@ -49,17 +50,9 @@ const AboutForm = () => {
               <p className="mb-7 mt-1 text-sm text-gray-600">
                 Enter Your Personal Details Here and Description
               </p>
-              <img
-                // src={picture}
-                alt="profilePic"
-                class="mx-auto object-cover rounded-lg h-52 w-56 "
-              />
-              <p class="text-center text-2xl text-gray-800 dark:text-white">
-                Phoenix
-              </p>
-              <p class="text-center text-xl font-light text-gray-500 dark:text-gray-200">
-                Valorant Duelist
-              </p>
+              <div>
+                <ProfilePreview/>
+              </div>
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">

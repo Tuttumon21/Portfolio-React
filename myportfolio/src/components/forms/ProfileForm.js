@@ -1,38 +1,44 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 // import avater from "./avater image1.jpeg";
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form";
+import ProfilePreview from "./ProfilePreview";
 
 const ProfileForm = () => {
-  const { register, handleSubmit} = useForm();
+  const { register, handleSubmit } = useForm();
   const user = localStorage.getItem("email");
-  const [category,setCategory] = useState('');
+  const [category, setCategory] = useState([]);
 
   const saveForm = async (data) => {
-
-    const formdata = {...data,"uEmail":user};
+    const formdata = { ...data, uEmail: user };
     // console.log(data)
-    const url = 'http://localhost:5000/portfolio/add';
+    const url = "http://localhost:5000/portfolio/add";
     const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        body: JSON.stringify(formdata)
-    })
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formdata),
+    });
 
     if (!response.ok) {
-        const err = await response.json();
-        console.log('Looks like there was a problem.',
-            err);
-            // console.log(err.msg);
-            // setSignMsg(err.msg);
-        return;
+      const err = await response.json();
+      console.log("Looks like there was a problem.", err);
+      // console.log(err.msg);
+      // setSignMsg(err.msg);
+      return;
     } else {
-        const data = await response.json();
-        alert("profile added")
+      const data = await response.json();
+      alert("profile added");
     }
-}
+  };
+
+  const getSubCategory = async(category) => {
+    // const userId = localStorage.getItem("userId");
+    fetch("http://localhost:5000/portfolio/category/"+category)
+      .then((response) => response.json())
+      .then((data) => setCategory(data));
+  };
 
 
   return (
@@ -47,22 +53,16 @@ const ProfileForm = () => {
               <p className="mb-7 mt-1 text-sm text-gray-600">
                 Enter Your Profile Details
               </p>
-              <img
-                src=""
-                alt="profilePic"
-                class="mx-auto object-cover rounded-full h-40 w-40 "
-              />
-              <p class="text-center text-2xl text-gray-800 dark:text-white">
-                JETT
-              </p>
-              <p class="text-center text-xl font-light text-gray-500 dark:text-gray-200">
-                Valorant Duelist
-              </p>
+              <div>
+                <ProfilePreview/>
+              </div>
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form onSubmit={handleSubmit(saveForm)} enctype="multipart/form-data">
-            
+            <form
+              onSubmit={handleSubmit(saveForm)}
+              enctype="multipart/form-data"
+            >
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -126,7 +126,7 @@ const ProfileForm = () => {
                         id="jobcat"
                         name="category"
                         {...register("category", { required: true })}
-                        onChange={e => setCategory(e.target.value)} 
+                        onChange={(e) => getSubCategory(e.target.value)}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
@@ -149,13 +149,12 @@ const ProfileForm = () => {
                         id="jobcat"
                         name="category"
                         // onClick={()}
-                        {...register("category", { required: true })}
+                        {...register("subcategory", { required: true })}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
                         <option selected>Select</option>
-                      
-                        
+                        {category && category.map((c,key)=> {return <option value={c.subcategory}>{c.subcategory}</option>})}
                       </select>
                     </div>
 
@@ -176,7 +175,7 @@ const ProfileForm = () => {
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-6">
-                      <label
+                      {/* <label
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
@@ -188,8 +187,9 @@ const ProfileForm = () => {
                         id="userAvatar"
                         autoComplete="given-name"
                         accept=".jpg, .jpeg, .png"
+                        onChange={handleFileInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      />
+                      /> */}
                     </div>
                     <div className="col-span-6 sm:col-span-6">
                       <label
@@ -221,7 +221,9 @@ const ProfileForm = () => {
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
-                        <option selected value="1">Style #1</option>
+                        <option selected value="1">
+                          Style #1
+                        </option>
                         <option value="2">Style #2</option>
                       </select>
                     </div>

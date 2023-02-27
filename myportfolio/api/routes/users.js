@@ -102,6 +102,7 @@ userRoutes.route("/update/:id").post(function (req, response) {
     });
 });
 
+
 // This section will help you delete a record
 userRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();

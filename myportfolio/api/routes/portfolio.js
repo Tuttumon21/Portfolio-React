@@ -26,6 +26,22 @@ portRoutes.route("/user/:id").get(function (req, res) {
   });
 });
 
+portRoutes.route("/portfolio/category/:cat").get(async (req, res) => {
+  try {
+    const db = await dbo.getDb();
+    // const username = localStorage.getItem("username");
+    console.log(req.params.cat)
+    await db.collection("subcategory").find({category: req.params.cat },{subcategory:1, _id:0}).toArray(function (err, result) {
+      if(err) throw err;
+      console.log(result)
+      res.status(200).send(result);
+      });       
+
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
+});
+
 portRoutes.route("/user/login").post(function (req, res) {
   let db_connect = dbo.getDb();
   const { email, password } = req.body;
@@ -59,6 +75,27 @@ portRoutes.route("/user/login").post(function (req, res) {
   });
 });
 
+//User pfp upload
+portRoutes.route("/portfolio/update/image/:uEmail").post(upload.single('imageFile'), function (req, res) {
+  let db_connect = dbo.getDb();
+  let myquery = { uEmail: (req.params.uEmail) };
+    let newvalues = {
+      $set: {
+        imagePath: "http://localhost:5000/public/images/" + req.file.filename,
+        // aboutStyle: req.body.aboutStyle
+      },
+    };
+  // const postData = { ...req.body, imagePath: "http://localhost:5000/public/images/" + req.file.filename }
+  console.log(req.body)
+  db_connect
+  .collection("portfolio")
+  .updateOne(myquery, newvalues, function (err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+  });
+})
+
+
 // This section will help you create a new record.
 portRoutes.route("/portfolio/add").post(function (req, response) {
   let db_connect = dbo.getDb();
@@ -78,7 +115,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     console.log(req.params.uEmail)
     console.log(req.body)
-    let myquery = { _uEmail: (req.params.email) };
+    let myquery = { uEmail: (req.params.uEmail) };
     let newvalues = {
       $set: {
         aboutDesc: req.body.aboutDesc,
@@ -93,7 +130,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       if (err) throw err;
       console.log("1 document updated");
       response.status(200).json(res);
-      response.status(200).send("about details added");
+      // response.status(200).send("about details added");
     });
     });
 
