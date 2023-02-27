@@ -109,6 +109,9 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
     
   });
 
+  // This section will help you update a record by uEmail
+  // This section will help you update a about record by uEmail
+
   portRoutes.route("/portfolio/update/about/:uEmail").post( function (req, response) {
     // portRoutes.route("/portfolio/add/about/:email").post( function (req, response) {
     
@@ -134,6 +137,65 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
     });
     });
 
+    // This section will help you update a services record by uEmail
+
+    portRoutes.route("/portfolio/update/services/:uEmail").post( function (req, response) {
+            
+      let db_connect = dbo.getDb();
+      console.log(req.params.uEmail)
+      console.log(req.body)
+      let myquery = { uEmail: (req.params.uEmail) };
+      let newvalues = {
+        $set: {
+          service1name: req.body.service1name,
+          service1desc: req.body.service1desc,
+          service2name: req.body.service2name,
+          service2desc: req.body.service2desc,
+          service3name: req.body.service3name,
+          service3desc: req.body.service3desc,
+          serviceStyle: req.body.serviceStyle
+        },
+      };
+
+      db_connect
+      .collection("portfolio")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+        response.status(200).json(res);
+        // response.status(200).send("service details added");
+      });
+      });
+
+      // This section will help you update a Experience record by uEmail
+
+    portRoutes.route("/portfolio/update/experience/:uEmail").post( function (req, response) {
+            
+      let db_connect = dbo.getDb();
+      console.log(req.params.uEmail)
+      console.log(req.body)
+      let myquery = { uEmail: (req.params.uEmail) };
+      let newvalues = {
+        $set: {
+          expe1name: req.body.expe1name,
+          expe1desc: req.body.expe1desc,
+          expe2name: req.body.expe2name,
+          expe2desc: req.body.expe2desc,
+          expe3name: req.body.expe3name,
+          expe3desc: req.body.expe3desc,
+          experienceStyle: req.body.experienceStyle
+        },
+      };
+
+      db_connect
+      .collection("portfolio")
+      .updateOne(myquery, newvalues, function (err, res) {
+        if (err) throw err;
+        console.log("1 document updated");
+        response.status(200).json(res);
+        // response.status(200).send("Experience details added");
+      });
+      });
 
 // This section will help you update a record by id.
 portRoutes.route("/update/:id").post(function (req, response) {

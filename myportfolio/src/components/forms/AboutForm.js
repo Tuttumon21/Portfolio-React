@@ -34,7 +34,7 @@ console.log(user)
         return;
     } else {
         const data = await response.json();
-        alert("profile added")
+        alert("About Updated...")
     }
 }
 
@@ -86,9 +86,9 @@ console.log(user)
                       </label>
                       <textarea
                         type="text"
-                        name="aboutdesc"
+                        name="aboutDesc"
                         {...register("aboutDesc", { required: true })}
-                        id="aboutdesc"
+                        id="aboutDesc"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
