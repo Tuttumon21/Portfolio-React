@@ -207,6 +207,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       let myquery = { uEmail: (req.params.uEmail) };
       let newvalues = {
         $set: {
+
           snapchat: req.body.snapchat,
           phoneNumber: req.body.phoneNumber,
           linkedin: req.body.linkedin,

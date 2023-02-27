@@ -59,9 +59,9 @@ const ContactForm = () => {
                       </label>
                       <input
                         type="text"
-                        name="Snapchat"
-                        id="Snapchat"
-                        {...register("Snapchat")}
+                        name="snapchat"
+                        id="snapchat"
+                        {...register("snapchat")}
                         autoComplete="email"
                         // placeholder="yourname@email.com"
                         // pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/"
