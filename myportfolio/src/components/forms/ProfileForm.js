@@ -1,45 +1,95 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 // import avater from "./avater image1.jpeg";
 import { useForm } from "react-hook-form";
 import ProfilePreview from "./ProfilePreview";
 
 const ProfileForm = () => {
-  const { register, handleSubmit } = useForm();
+  // const { register, handleSubmit } = useForm();
   const user = localStorage.getItem("email");
+  const [details, setDetails] = useState(null)
+  const [cat, setCat] = useState(null)
+  const [style, setStyle] = useState("")
   const [category, setCategory] = useState([]);
-
-  const saveForm = async (data) => {
-    const formdata = { ...data, uEmail: user };
-    // console.log(data)
-    const url = "http://localhost:5000/portfolio/add";
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formdata),
+  const [file, setFile] = useState(null);
+  const [form, setForm] = useState({
+    firstname: "",
+    lastname: "",
+    jobtitle: "",    
+    subcategory: "",
+    email: "",
+    desc: "",
+    style: "",
+  });
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
     });
+  }
 
-    if (!response.ok) {
-      const err = await response.json();
-      console.log("Looks like there was a problem.", err);
-      // console.log(err.msg);
-      // setSignMsg(err.msg);
-      return;
-    } else {
-      const data = await response.json();
-      alert("profile added...");
-    }
-  };
-
+  useEffect(()=>{
+    fetch("http://localhost:5000/portfolio/details/"+user)
+    .then((response) => response.json())
+    .then((data) => setDetails(data));
+  },[])
+ 
   const getSubCategory = async(category) => {
     // const userId = localStorage.getItem("userId");
+    setCat(category)
     fetch("http://localhost:5000/portfolio/category/"+category)
       .then((response) => response.json())
       .then((data) => setCategory(data));
   };
 
+  const handleFileInputChange = (event) => {
+    const file = event.target.files[0];
+
+    const previewUrl = URL.createObjectURL(file);
+    setFile(file);
+    // const fileName = event.target.files[0].name;
+    // console.log("image" + fileName);
+    // setImagePreview(previewUrl);
+  };
+  async function onSubmit(e) {
+    e.preventDefault();
+   
+    // console.log(fileUpload);
+    const formData = new FormData();
+    formData.append("firstname", form.firstname);
+    formData.append("lastname", form.lastname);
+    formData.append("jobtitle", form.jobtitle);
+    formData.append("category", cat);
+    formData.append("subcategory", form.subcategory);
+    formData.append("email", form.email);
+    formData.append("desc", form.desc);
+    formData.append("style", style);
+    // formData.append("event", form.event);
+    formData.append("imageFile", file);
+    // formData.append("likes", 1);
+    try {
+      const url = "http://localhost:5000/portfolio/add";
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          // "content-type": "multipart/form-data",
+        },
+        body: formData,
+      });
+      if (!response.ok) {
+        const err = await response.json();
+        alert("login failed");
+        console.log("Looks like there was a problem.", err);
+        return;
+      } else {
+        const msg = await response.json();
+        window.location.reload();
+        // setOpen(false);
+        // getGroups();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <>
@@ -54,13 +104,13 @@ const ProfileForm = () => {
                 Enter Your Profile Details
               </p>
               <div>
-                <ProfilePreview/>
+                {/* <ProfilePreview/> */}
               </div>
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
             <form
-              onSubmit={handleSubmit(saveForm)}
+              onSubmit={onSubmit}
               enctype="multipart/form-data"
             >
               <div className="overflow-hidden shadow sm:rounded-md">
@@ -77,7 +127,8 @@ const ProfileForm = () => {
                         type="text"
                         name="firstname"
                         id="firstname"
-                        {...register("firstname", { required: true })}
+                        value={form.firstname}
+                        onChange={(e) => updateForm({ firstname: e.target.value })}
                         autoComplete="given-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -94,7 +145,8 @@ const ProfileForm = () => {
                         type="text"
                         name="lastname"
                         id="lastname"
-                        {...register("lastname", { required: true })}
+                        value={form.lastname}
+                        onChange={(e) => updateForm({ lastname: e.target.value })}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -110,7 +162,8 @@ const ProfileForm = () => {
                         type="text"
                         name="jobtitle"
                         id="jobtitle"
-                        {...register("jobtitle", { required: true })}
+                        value={form.jobtitle}
+                        onChange={(e) => updateForm({ jobtitle: e.target.value })}
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
@@ -125,7 +178,7 @@ const ProfileForm = () => {
                       <select
                         id="jobcat"
                         name="category"
-                        {...register("category", { required: true })}
+                        
                         onChange={(e) => getSubCategory(e.target.value)}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
@@ -146,10 +199,11 @@ const ProfileForm = () => {
                         Job Field
                       </label>
                       <select
-                        id="jobcat"
-                        name="category"
+                        id="subcategory"
+                        name="subcategory"
                         // onClick={()}
-                        {...register("subcategory", { required: true })}
+                        value={form.subcategory}
+                        onChange={(e) => updateForm({ subcategory: e.target.value })}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
@@ -168,14 +222,15 @@ const ProfileForm = () => {
                       <input
                         type="text"
                         name="email"
-                        {...register("email", { required: true })}
+                        value={form.email}
+                        onChange={(e) => updateForm({ email: e.target.value })}
                         id="email-address"
                         autoComplete="email"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
                     <div className="col-span-6 sm:col-span-6">
-                      {/* <label
+                      <label
                         htmlFor="first-name"
                         className="block text-sm font-medium text-gray-700"
                       >
@@ -187,9 +242,9 @@ const ProfileForm = () => {
                         id="userAvatar"
                         autoComplete="given-name"
                         accept=".jpg, .jpeg, .png"
-                        // onChange={handleFileInputChange}
+                        onChange={handleFileInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                      /> */}
+                      />
                     </div>
                     <div className="col-span-6 sm:col-span-6">
                       <label
@@ -201,7 +256,8 @@ const ProfileForm = () => {
                       <textarea
                         type="text"
                         name="desc"
-                        {...register("desc", { required: true })}
+                        value={form.desc}
+                        onChange={(e) => updateForm({ desc: e.target.value })}
                         id="last-name"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -217,7 +273,8 @@ const ProfileForm = () => {
                       <select
                         id="country"
                         name="style"
-                        {...register("style", { required: true })}
+                        // value={form.style}
+                        onChange={(e) => setStyle( e.target.value )}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
@@ -229,6 +286,14 @@ const ProfileForm = () => {
                     </div>
                   </div>
                 </div>
+                {details?<div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
+                  <button
+                    type="submit"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  >
+                    Update
+                  </button>
+                </div>:
                 <div className="bg-gray-50 px-4 py-3 text-right sm:px-6">
                   <button
                     type="submit"
@@ -237,6 +302,7 @@ const ProfileForm = () => {
                     Save
                   </button>
                 </div>
+                }
               </div>
             </form>
           </div>

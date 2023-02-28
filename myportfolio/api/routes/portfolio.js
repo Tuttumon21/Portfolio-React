@@ -6,7 +6,7 @@ const config = require("config");
 const multer = require("multer");
 const upload = multer({ dest: "./public/images"});
 
-// This section will help you get a list of all the records.
+
 portRoutes.route("/portfolio/details/:email").get(function (req, res) {
   let db_connect = dbo.getDb("myportfolio");
   let myquery = { uEmail: req.params.email};
@@ -14,6 +14,18 @@ portRoutes.route("/portfolio/details/:email").get(function (req, res) {
     if (err) throw err;
     res.status(200).json(result);
   });
+});
+
+portRoutes.route("/portfolio/allcat").get(function (req, res) {
+  let db_connect = dbo.getDb("myportfolio");
+  db_connect
+    .collection("portfolio")
+    .find({})
+    .sort({_id:-1})
+    .toArray(function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
 // This section will help you get a single record by id
@@ -97,10 +109,10 @@ portRoutes.route("/portfolio/update/image/:uEmail").post(upload.single('imageFil
 
 
 // This section will help you create a new record.
-portRoutes.route("/portfolio/add").post(function (req, response) {
+portRoutes.route("/portfolio/add").post(upload.single('imageFile'),function (req, response) {
   let db_connect = dbo.getDb();
   // upload.single("userAvatar"),
-  const userData = {...req.body}
+  const userData = {...req.body,imagePath: "http://localhost:5000/public/images/" + req.file.filename}
   // ,proPic:"http://localhost:5000/public/images/"+req.file.filename
       db_connect.collection("portfolio").insertOne(userData, function (err, res) {
         if (err) throw err;
@@ -118,7 +130,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
     let db_connect = dbo.getDb();
     console.log(req.params.uEmail)
     console.log(req.body)
-    let myquery = { uEmail: (req.params.uEmail) };
+    let myquery = { email: (req.params.uEmail) };
     let newvalues = {
       $set: {
         aboutDesc: req.body.aboutDesc,
@@ -144,7 +156,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       let db_connect = dbo.getDb();
       console.log(req.params.uEmail)
       console.log(req.body)
-      let myquery = { uEmail: (req.params.uEmail) };
+      let myquery = { email: (req.params.uEmail) };
       let newvalues = {
         $set: {
           service1name: req.body.service1name,
@@ -174,7 +186,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       let db_connect = dbo.getDb();
       console.log(req.params.uEmail)
       console.log(req.body)
-      let myquery = { uEmail: (req.params.uEmail) };
+      let myquery = { email: (req.params.uEmail) };
       let newvalues = {
         $set: {
           expe1name: req.body.expe1name,
@@ -204,7 +216,7 @@ portRoutes.route("/portfolio/add").post(function (req, response) {
       let db_connect = dbo.getDb();
       console.log(req.params.uEmail)
       console.log(req.body)
-      let myquery = { uEmail: (req.params.uEmail) };
+      let myquery = { email: (req.params.uEmail) };
       let newvalues = {
         $set: {
 
