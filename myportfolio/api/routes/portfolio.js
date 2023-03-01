@@ -9,23 +9,39 @@ const upload = multer({ dest: "./public/images"});
 
 portRoutes.route("/portfolio/details/:email").get(function (req, res) {
   let db_connect = dbo.getDb("myportfolio");
-  let myquery = { uEmail: req.params.email};
+  let myquery = { email: req.params.email};
   db_connect.collection("portfolio").findOne(myquery, function (err, result) {
     if (err) throw err;
     res.status(200).json(result);
   });
 });
 
-portRoutes.route("/portfolio/allcat").get(function (req, res) {
-  let db_connect = dbo.getDb("myportfolio");
-  db_connect
-    .collection("portfolio")
-    .find({})
-    .sort({_id:-1})
-    .toArray(function (err, result) {
-      if (err) throw err;
+portRoutes.route("/portfolio/:category").get(async(req, res) =>{
+  try {
+    const db = await dbo.getDb();
+    // console.log(req.params.category)
+    if(req.params.category=="all")
+    {
+      db
+        .collection("portfolio")
+        .find({})
+        .sort({_id:-1})
+        .toArray(function (err, result) {
+          if (err) throw err;
+          res.json(result);
+        });
+    }
+    else{
+    await db.collection("portfolio").find({category: req.params.category }).sort({_id:-1}).toArray(function (err, result) {
+      if(err) throw err;
+      // console.log(result)
       res.json(result);
-    });
+      });  
+    }     
+
+  } catch (err) {
+    res.status(500).json({ message: err.message })
+  }
 });
 
 // This section will help you get a single record by id
@@ -42,10 +58,10 @@ portRoutes.route("/portfolio/category/:cat").get(async (req, res) => {
   try {
     const db = await dbo.getDb();
     // const username = localStorage.getItem("username");
-    console.log(req.params.cat)
+    // console.log(req.params.cat)
     await db.collection("subcategory").find({category: req.params.cat },{subcategory:1, _id:0}).toArray(function (err, result) {
       if(err) throw err;
-      console.log(result)
+      // console.log(result)
       res.status(200).send(result);
       });       
 

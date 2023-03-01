@@ -15,22 +15,22 @@ const Categorycard = (props) => {
   const [state,setState] = useState(0)
   const CatTabs = () =>{
     if(state===0){
-        return (<><Profiletext/><Profilescard category="UI/UX" name="Rakesh" href="#123"/></>)
+        return (<><Profiletext/><Profilescard category="all"/></>)
     }
     if(state===1){
-        return (<Categorytab tab1name="software engineer" tab2name="full stack developer" tab3name="data scientist" tab4name="blockchain developer"/>)
+        return (<><Profiletext/><Profilescard category="Software"/></>)
     }
     if(state===2){
-      return (<Categorytab tab1name="photographer" tab2name="video editor" tab3name="film director" tab4name="production assistant"/>)
+      return (<><Profiletext/><Profilescard category="Entertainment"/></>)
   }
   if(state===3){
-    return (<Categorytab tab1name="finance manager" tab2name="financial analyst" tab3name="senior accountant" tab4name="personal banker"/>)
+    return (<><Profiletext/><Profilescard category="Finance"/></>)
 }
 if(state===4){
-  return (<Categorytab tab1name="medical officer" tab2name="nurse" tab3name="pharmacist" tab4name="medical lab technologist"/>)
+  return (<><Profiletext/><Profilescard category="Medical"/></>)
 }
 if(state===5){
-  return (<Categorytab tab1name="academic manager" tab2name="teacher" tab3name="lecturer" tab4name="education counsellor"/>)
+  return (<><Profiletext/><Profilescard category="Education"/></>)
 }
 
 }
