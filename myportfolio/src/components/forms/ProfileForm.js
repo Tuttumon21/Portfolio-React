@@ -278,9 +278,10 @@ const ProfileForm = () => {
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
-                        <option selected value="1">
-                          Style #1
+                        <option selected value="0">
+                          Choose Style
                         </option>
+                        <option value="1">Style #1</option>
                         <option value="2">Style #2</option>
                       </select>
                     </div>

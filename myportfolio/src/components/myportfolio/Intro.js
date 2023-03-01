@@ -19,7 +19,7 @@ const Intro = () => {
     <div class="text-start w-1/2 py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
         <h2 class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
             <span class="block">
-                {details.lastname}
+                {details.firstname}
             </span>
             <span class="block text-indigo-500">
                 {/* It&#x27;s today or never. */}
@@ -38,7 +38,7 @@ const Intro = () => {
             </div>
         </div>
     </div>
-    <img src={profilepicture} class="absolute top-0 right-0 hidden h-full max-w-1/2 lg:block"/>
+    <img src={details.imagePath} class="absolute top-0 right-0 hidden h-full max-w-1/2 lg:block"/>
 </div>
 
   )
