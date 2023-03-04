@@ -12,11 +12,11 @@ const Profilescard = ({category}) => {
   return (
     <div className="flex items-center justify-start p-2 h-auto w-full">
       <div class="grid w-full grid-cols-6 mx-auto">
-        <div className="card p-1">
+        {/* <div className="card p-0"> */}
           
           <Profile details={details}/>
-          
-        </div>
+        
+        {/* </div> */}
       </div>
     </div>
   );

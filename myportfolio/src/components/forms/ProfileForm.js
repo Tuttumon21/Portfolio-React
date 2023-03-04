@@ -16,7 +16,7 @@ const ProfileForm = () => {
     lastname: "",
     jobtitle: "",    
     subcategory: "",
-    email: "",
+    email: user,
     desc: "",
     style: "",
   });
@@ -226,6 +226,7 @@ const ProfileForm = () => {
                         onChange={(e) => updateForm({ email: e.target.value })}
                         id="email-address"
                         autoComplete="email"
+                        disabled
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>

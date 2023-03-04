@@ -9,7 +9,7 @@ import pic6 from "./categoryimg/education-low-resolution-color-logo.jpeg";
 import Profiletext from "./text/Profiletext";
 import {useState} from 'react'
 import Profilescard from "./Profilescard";
-import Categorytab from "./Categorytab";
+
 
 const Categorycard = (props) => {
   const [state,setState] = useState(0)

@@ -16,7 +16,7 @@ const Profile = ({details}) => {
 
           <div class="p-3 lg:text-center">
             <span class="mb-8 text-xs font-semibold tracking-widest text-blue-600 uppercase">
-              {d.category}
+              {d.subcategory}
             </span>
             <h4 class="mt-2 text-2xl font-semibold leading-none tracking-tighter text-neutral-600 lg:text-3xl">
               {d.firstname}
