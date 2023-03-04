@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react'
-import profilepicture from "./download.jpeg";
+// import profilepicture from "./download.jpeg";
 const Intro = () => {
 
     const [details,setDetails] = useState("");
@@ -15,32 +15,38 @@ const Intro = () => {
       };
   return (
     
-<div class="bg-white dark:bg-gray-800 overflow-hidden relative">
-    <div class="text-start w-1/2 py-12 px-4 sm:px-6 lg:py-16 lg:px-8 z-20">
-        <h2 class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl">
-            <span class="block">
-                {details.firstname}
-            </span>
-            <span class="block text-indigo-500">
-                {/* It&#x27;s today or never. */}
-                {details.jobtitle}
-            </span>
-        </h2>
-        <p class="text-xl mt-4 text-gray-400">
-        {details.desc}
-            {/* I had noticed that both in the very poor and very rich extremes of society the mad were often allowed to mingle freely */}
-           </p>
-        <div class="lg:mt-0 lg:flex-shrink-0">
-            <div class="mt-12 inline-flex rounded-md shadow">
-                <button type="button" class="py-4 px-6  bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg ">
-                    Contact me
-                </button>
-            </div>
-        </div>
-    </div>
-    <img src={details.imagePath} class="absolute top-0 right-0 hidden h-full max-w-1/2 lg:block"/>
-</div>
+<section>
+  <div class="my-5 px-4 py-12 mx-auto max-w-7xl sm:px-6 md:px-12 lg:px-24 lg:py-24 bg-white shadow rounded">
+    <div class="flex flex-wrap items-center mx-auto max-w-7xl">
+     
 
+      <div class="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
+        <span class="mb-8 text-xs font-bold tracking-widest text-blue-600 uppercase">{details.category}<br/>{details.jobtitle} </span>
+        <h1 class="mb-8 text-4xl font-bold leading-none tracking-tighter text-neutral-600 md:text-7xl lg:text-5xl">{details.firstname} {details.lastname}</h1>
+        <p class="mb-8 text-base leading-relaxed text-left text-gray-500">{details.desc}</p>
+        <div class="mt-0 lg:mt-6 max-w-7xl sm:flex">
+          <div class="mt-3 rounded-lg sm:mt-0 sm:ml-3">
+            <button class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Contact Me</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:max-w-lg lg:w-1/2 rounded-xl">
+        <div>
+          <div class="relative w-full max-w-lg">
+            <div class="absolute top-0 rounded-full -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+
+            <div class="absolute rounded-full -bottom-24 right-20 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+            <div class="relative">
+              <img class="object-cover object-center w-96 h-96 mx-auto rounded-full shadow-2xl" alt="hero" src={details.imagePath}/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
   )
 }
 
