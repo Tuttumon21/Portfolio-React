@@ -5,6 +5,7 @@ import facebook from "./facebook.png";
 import instagram from "./instagram.png";
 import twitter from "./twitter.png";
 
+
 const Introstyle2 = () => {
   const [details, setDetails] = useState("");
   useEffect(() => {
@@ -94,6 +95,9 @@ const Introstyle2 = () => {
               ) : (
                 <></>
               )}
+              
+
+
             </div>
           </div>
         </div>
