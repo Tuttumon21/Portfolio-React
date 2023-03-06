@@ -33,7 +33,7 @@ const Aboutmestyle1 = () => {
     </div>
     <section id="intro">
       <div class="flex flex-col items-center justify-center pt-24 mx-auto rounded-lg lg:px-10 max-w-7xl">
-        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={details.imagePath}/>
+        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={details.aboutImage}/>
       </div>
     </section>
   </div>

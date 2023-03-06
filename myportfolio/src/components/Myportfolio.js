@@ -40,41 +40,27 @@ const Myportfolio = () => {
         <div>
           <Navbar />
 
-          {details.style === "1" ? (
-            <Intro />
-          ) : (
-            <>
-              <Introstyle2 />
-            </>
-          )}
+          {details.style === null && <></>}
+          {details.style === "1" && <Intro />}
+          {details.style === "2" && <Introstyle2 />}
 
-          {details.aboutStyle === "Style#1" ? (
-            <Aboutmestyle1 />
-          ) : (
-            <>
-              <Aboutmestyle2 />
-            </>
-          )}
+          {details.aboutStyle === null && <></>}
+          {details.aboutStyle === "Style#1" && <Aboutmestyle1 />}
+          {details.aboutStyle === "Style#2" && <Aboutmestyle2 />}
 
-          {details.serviceStyle === "Style#1" ? <Servicestyle1 /> : <></>}
-
-          {details.serviceStyle === "Style#2" ? (
-            <Servicestyle2 />
-          ) : (
-            <>
-              <Servicestyle3 />
-            </>
-          )}
+          {details.serviceStyle === null && <></>}
+          {details.serviceStyle === "Style#1" && <Servicestyle1 />}
+          {details.serviceStyle === "Style#2" && <Servicestyle2 />}
+          {details.serviceStyle === "Style#3" && <Servicestyle3 />}
 
           {details.experienceStyle === "Style#1" && <Experiencestyle1 />}
           {details.experienceStyle === "Style#2" && <Experiencestyle2 />}
           {details.experienceStyle === "Style#3" ? <Experiencestyle3 /> : <></>}
 
-          {details.contactsStyle === "Style#1" ? (
-            <Contactmestyle1 />
-          ) : (
-            <Contactmestyle2 />
-          )}
+          {details.contactsStyle === null && <></>}
+          {details.contactsStyle === "Style#1" && <Contactmestyle1 />}
+          {details.contactsStyle === "Style#2" && <Contactmestyle2 />}
+
         </div>
       )}
     </>

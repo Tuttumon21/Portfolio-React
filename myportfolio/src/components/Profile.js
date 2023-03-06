@@ -1,6 +1,8 @@
 import React from "react";
 
 const Profile = ({details}) => {
+
+
   return (
    <div>
     {

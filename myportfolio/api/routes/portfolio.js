@@ -140,7 +140,7 @@ portRoutes.route("/portfolio/add").post(upload.single('imageFile'),function (req
   // This section will help you update a record by uEmail
   // This section will help you update a about record by uEmail
 
-  portRoutes.route("/portfolio/update/about/:uEmail").post( function (req, response) {
+  portRoutes.route("/portfolio/update/about/:uEmail").post(upload.single('imageFiles'), function (req, response) {
     // portRoutes.route("/portfolio/add/about/:email").post( function (req, response) {
     
     let db_connect = dbo.getDb();
@@ -150,7 +150,8 @@ portRoutes.route("/portfolio/add").post(upload.single('imageFile'),function (req
     let newvalues = {
       $set: {
         aboutDesc: req.body.aboutDesc,
-        aboutStyle: req.body.aboutStyle
+        aboutStyle: req.body.aboutStyle,
+        aboutImage: "http://localhost:5000/public/images/" + req.file.filename
       },
     };
     // const userData = {...req.body,proPic:"http://localhost:5000/public/images/"+req.file.filename}

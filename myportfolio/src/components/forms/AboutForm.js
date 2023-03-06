@@ -1,42 +1,71 @@
-import React from "react";
+import React,{useState} from "react";
 import { useForm } from 'react-hook-form';
 import ProfilePreview from "./ProfilePreview";
 // import picture from "./avater image2.jpeg";
 const AboutForm = () => {
   const { register, handleSubmit} = useForm();
   const user = localStorage.getItem("email");
+  const [file, setFile] = useState(null);
+  const [style, setStyle] = useState("")
+  const [form, setForm] = useState({
+    
+    aboutDesc: "",
+    // aboutStyle: "",
+  });
+  function updateForm(value) {
+    return setForm((prev) => {
+      return { ...prev, ...value };
+    });
+  }
 console.log(user)
 
-  const saveForm = async (data) => {
+const handleFileInputChange = (event) => {
+  const file = event.target.files[0];
 
-    const formdata = {...data,"uEmail":user};
-    // console.log(data)
-    const url = 'http://localhost:5000/portfolio/update/about/'+ user;
-
-    // const url = 'http://localhost:5000/portfolio/add/about/'+ user;
-    
+  const previewUrl = URL.createObjectURL(file);
+  setFile(file);
+  // const fileName = event.target.files[0].name;
+  // console.log("image" + fileName);
+  // setImagePreview(previewUrl);
+};
+async function onSubmit(e) {
+  e.preventDefault();
+ 
+  // console.log(fileUpload);
+  const formData = new FormData();
+  
+  
+  formData.append("aboutDesc", form.aboutDesc);
+  formData.append("aboutStyle", style);
+  // formData.append("event", form.event);
+  formData.append("imageFiles", file);
+  // formData.append("likes", 1);
+  try {
+    const url = "http://localhost:5000/portfolio/update/about/"+ user;
     const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-        // body: JSON.stringify(data)
-        body: JSON.stringify(formdata)
-    })
-
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        // "content-type": "multipart/form-data",
+      },
+      body: formData,
+    });
     if (!response.ok) {
-        const err = await response.json();
-        console.log('Looks like there was a problem.',
-            err);
-            // console.log(err.msg);
-            // setSignMsg(err.msg);
-        return;
+      const err = await response.json();
+      alert("login failed");
+      console.log("Looks like there was a problem.", err);
+      return;
     } else {
-        const data = await response.json();
-        alert("About Updated...")
+      const msg = await response.json();
+      // window.location.reload();
+      // setOpen(false);
+      // getGroups();
     }
+  } catch (err) {
+    console.log(err);
+  }
 }
+
 
   return (
     <>
@@ -51,12 +80,12 @@ console.log(user)
                 Enter Your Personal Details Here and Description
               </p>
               <div>
-                <ProfilePreview/>
+                {/* <ProfilePreview/> */}
               </div>
             </div>
           </div>
           <div className="mt-5 md:col-span-2 md:mt-0">
-            <form onSubmit={handleSubmit(saveForm)}>
+            <form onSubmit={onSubmit}>
               <div className="overflow-hidden shadow sm:rounded-md">
                 <div className="bg-white px-4 py-5 sm:p-6">
                   <div className="grid grid-cols-6 gap-6">
@@ -73,6 +102,7 @@ console.log(user)
                         id="aboutpic"
                         autoComplete="given-name"
                         accept=".jpg, .jpeg, .png"
+                        onChange={handleFileInputChange}
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                       />
                     </div>
@@ -87,7 +117,9 @@ console.log(user)
                       <textarea
                         type="text"
                         name="aboutDesc"
-                        {...register("aboutDesc", { required: true })}
+                        value={form.aboutDesc}
+                        onChange={(e) => updateForm({ aboutDesc: e.target.value })}
+                        // {...register("aboutDesc", { required: true })}
                         id="aboutDesc"
                         autoComplete="family-name"
                         className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -104,12 +136,16 @@ console.log(user)
                       <select
                         id="aboutStyle"
                         name="aboutStyle"
-                        {...register("aboutStyle", { required: true })}
+                        onChange={(e) => setStyle( e.target.value )}
+                        // {...register("aboutStyle", { required: true })}
                         autoComplete="country-name"
                         className="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                       >
-                        <option selected>Style#1</option>
-                        <option>Style#2</option>
+                        <option selected value="0">
+                          Choose Style
+                        </option>
+                        <option value="Style#1">Style#1</option>
+                        <option value="Style#2">Style#2</option>
                       </select>
                     </div>
                   </div>

@@ -21,7 +21,7 @@ const Aboutmestyle2 = () => {
   <div class="relative items-center w-full px-5 py-12 my-5 mx-auto md:px-12 lg:px-16 max-w-7xl lg:py-24 bg-white shadow">
   <section id="intro">
       <div class="flex flex-col items-center justify-center pt-24 mx-auto rounded-lg lg:px-10 max-w-4xl">
-        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={details.imagePath}/>
+        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={details.aboutImage}/>
       </div>
     </section>
     
