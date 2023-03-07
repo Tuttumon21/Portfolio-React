@@ -1,4 +1,5 @@
 import React,{useEffect, useState} from "react";
+import {useNavigate, Link } from "react-router-dom";
 
 import Categorycard from "./Categorycard";
 import Navbar from "./Navbar";
@@ -8,9 +9,11 @@ import Introtext from "./text/Introtext";
 
 import Welcometext from "./text/Welcometext";
 
+
 const Index = () => {
   // const[userdetails,setUserDetails] = useState(null)
   const [showAlert, setShowAlert] = useState(false)
+  // const navigate = useNavigate();
   useEffect(()=>{
     const user = localStorage.getItem("email");
     fetch("http://localhost:5000/portfolio/details/" + user)
@@ -22,19 +25,54 @@ const Index = () => {
       });
   },[])
 
-  const ShowAlert = () =>{
-    return<div id="alert-1" class="flex p-4 mb-4 text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-    <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-    <span class="sr-only">Info</span>
-    <div class="ml-3 text-sm font-medium">
-      Go to <a href="/Profile" class="font-semibold underline hover:no-underline">Profile</a> and fill your details
-    </div>
-      <button onClick={()=>setShowAlert(false)} type="button" class="ml-auto -mx-1.5 -my-1.5 bg-blue-50 text-blue-500 rounded-lg focus:ring-2 focus:ring-blue-400 p-1.5 hover:bg-blue-200 inline-flex h-8 w-8 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-1" aria-label="Close">
-        <span class="sr-only">Close</span>
-        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-    </button>
+  
+    // const [secondsLeft, setSecondsLeft] = useState(10);
+  
+    // useEffect(() => {
+    //   const intervalId = setInterval(() => {
+    //     setSecondsLeft((prevSeconds) => prevSeconds - 1);
+    //   }, 1000);
+  
+    //   return () => clearInterval(intervalId);
+    // }, []);
+
+
+    const ShowAlert = () =>{
+
+      // setTimeout(() => {
+        
+      //   navigate("/Profile", { replace: true });
+      // }, 10000);
+    return<div class="overflow-y-auto fixed inset-0 z-10 transition-opacity bg-gray-400 bg-opacity-75" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+  <div class="flex items-end justify-center min- px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+      <div class="transition-opacity bg-blue-500 bg-opacity-75" aria-hidden="true"></div>
+      <span class="hidden sm:inline-block sm:align-middle sm:" aria-hidden="true">​</span>
+      {/* <!--Modal panel : This is where you put the pop-up's content, the div on top this coment is the wrapper --> */}
+      <div class="inline-block p-5 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-2xl lg:p-16 sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+          <div>
+              <div class="mt-3 text-left sm:mt-5">
+                  <h1 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-blue-700">Notification</h1>
+                  <p class="mx-auto text-base leading-relaxed text-gray-800">Go to your Profile to fill the Details</p>
+              </div>
+          </div>
+          <div class="mt-6 sm:flex">
+              <div class="mt-3 rounded-lg sm:mt-0">
+                  <button onClick={()=>setShowAlert(false)} class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
+              </div>
+              <div class="mt-3 rounded-lg sm:mt-0 sm:ml-3">
+              <Link to="/Profile">
+                  <button class="items-center block px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Go to Profile</button>
+                  </Link>
+              </div>
+          </div>
+      </div>
   </div>
+</div>
+
   }
+  
+  
+  
   
   return (
     <div className="Index">  
