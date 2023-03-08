@@ -6,20 +6,9 @@ function sendWhatsAppMessage(phoneNumber) {
   const url = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
   window.open(url, "_blank");
 }
-const Intro = () => {
-  const [details, setDetails] = useState("");
-  useEffect(() => {
-    getDetails();
-  }, []);
+const Intro = (props) => {
 
-  const getDetails = async () => {
-    const user = await localStorage.getItem("email");
-    fetch("http://localhost:5000/portfolio/details/" + user)
-      .then((response) => response.json())
-      .then((data) => setDetails(data));
-  };
-
-  const recipientPhoneNumber = `${details.phoneNumber}`;
+  const recipientPhoneNumber = `${props.phoneNumber}`;
 
   return (
     <section>
@@ -27,19 +16,19 @@ const Intro = () => {
         <div class="flex flex-wrap items-center mx-auto max-w-7xl">
           <div class="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
             <span class="mb-8 text-base font-bold tracking-widest text-blue-600 uppercase">
-              {details.category}
+              {props.category}
               <br />
-              {details.jobtitle}{" "}
+              {props.jobtitle}{" "}
             </span>
             <h1 class="mb-8 text-4xl font-bold leading-none tracking-tighter text-neutral-800 md:text-7xl lg:text-5xl">
-              {details.firstname} {details.lastname}
+              {props.firstname} {props.lastname}
             </h1>
             <p class="mb-8 text-base leading-relaxed text-left text-gray-700">
-              {details.desc}
+              {props.desc}
             </p>
             <div class="mt-0 lg:mt-6 max-w-7xl sm:flex">
               <div class="mt-3 rounded-lg sm:mt-0 sm:ml-3">
-                {details.phoneNumber ? (
+                {props.phoneNumber ? (
                   <button
                     onClick={() => sendWhatsAppMessage(recipientPhoneNumber)}
                     class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -63,7 +52,7 @@ const Intro = () => {
                   <img
                     class="object-cover object-center w-96 h-96 mx-auto rounded-full shadow-2xl"
                     alt="hero"
-                    src={details.imagePath}
+                    src={props.imagePath}
                   />
                 </div>
               </div>

@@ -1,19 +1,7 @@
 // import React from 'react'
 import React, { useState, useEffect } from "react";
 
-const Aboutmestyle1 = () => {
-
-    const [details, setDetails] = useState("");
-  useEffect(() => {
-    getDetails();
-  }, []);
-
-  const getDetails = async () => {
-    const user = await localStorage.getItem("email");
-    fetch("http://localhost:5000/portfolio/details/" + user)
-      .then((response) => response.json())
-      .then((data) => setDetails(data));
-  };
+const Aboutmestyle1 = (props) => {
 
   return (
     <section>
@@ -26,14 +14,14 @@ const Aboutmestyle1 = () => {
             
           </h1>
           
-          <p class="max-w-5xl text-justify  mx-auto mt-7 text-1xl leading-relaxed  text-gray-800">{details.aboutDesc}</p>
+          <p class="max-w-5xl text-justify  mx-auto mt-7 text-1xl leading-relaxed  text-gray-800">{props.aboutDesc}</p>
           
         </div>
       </div>
     </div>
     <section id="intro">
       <div class="flex flex-col items-center justify-center pt-24 mx-auto rounded-lg lg:px-10 max-w-7xl">
-        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={details.aboutImage}/>
+        <img class="object-cover object-center w-full rounded-xl" alt="hero" src={props.aboutImage}/>
       </div>
     </section>
   </div>

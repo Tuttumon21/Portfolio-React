@@ -6,18 +6,8 @@ import instagram from "./instagram.png";
 import twitter from "./twitter.png";
 
 
-const Introstyle2 = () => {
-  const [details, setDetails] = useState("");
-  useEffect(() => {
-    getDetails();
-  }, []);
-
-  const getDetails = async () => {
-    const user = await localStorage.getItem("email");
-    fetch("http://localhost:5000/portfolio/details/" + user)
-      .then((response) => response.json())
-      .then((data) => setDetails(data));
-  };
+const Introstyle2 = (props) => {
+  
 
   return (
     <section>
@@ -33,7 +23,7 @@ const Introstyle2 = () => {
                   <img
                     class="object-cover object-center mx-auto w-96 h-96 rounded-lg shadow-2xl"
                     alt="hero"
-                    src={details.imagePath}
+                    src={props.imagePath}
                   />
                 </div>
               </div>
@@ -44,23 +34,23 @@ const Introstyle2 = () => {
               I AM
               <span class="text-blue-600">
                 {" "}
-                {details.firstname} {details.lastname}
+                {props.firstname} {props.lastname}
               </span>
             </span>
             <h1 class="mb-8 text-4xl font-bold leading-none tracking-tighter text-neutral-800 md:text-7xl lg:text-5xl">
               i am a{" "}
               <span class="animate-pulse text-blue-600">
-                {details.jobtitle}
+                {props.jobtitle}
               </span>
             </h1>
             <p class="mb-8 text-xl leading-relaxed text-left text-gray-800">
-              {details.desc}
+              {props.desc}
             </p>
             <div class="flex flex-wrap w-full mt-2 -mx-4 text-left">
                 
-            {details.linkedin ? (
+            {props.linkedin ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.linkedin}>
+                  <a href={props.linkedin}>
                     <img src={linkedin} />
                   </a>
                 </div>
@@ -68,27 +58,27 @@ const Introstyle2 = () => {
                 <></>
               )}
 
-              {details.facebook ? (
+              {props.facebook ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.facebook}>
+                  <a href={props.facebook}>
                     <img src={facebook} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-              {details.instagram ? (
+              {props.instagram ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.instagram}>
+                  <a href={props.instagram}>
                     <img src={instagram} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-              {details.twitter ? (
+              {props.twitter ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.twitter}>
+                  <a href={props.twitter}>
                     <img src={twitter} />
                   </a>
                 </div>

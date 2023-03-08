@@ -4,19 +4,9 @@ function sendWhatsAppMessage(phoneNumber) {
   const url = `https://api.whatsapp.com/send?phone=${phoneNumber}`;
   window.open(url, "_blank");
 }
-const Contactmestyle2 = () => {
-  const [details, setDetails] = useState("");
-  useEffect(() => {
-    getDetails();
-  }, []);
-
-  const getDetails = async () => {
-    const user = await localStorage.getItem("email");
-    fetch("http://localhost:5000/portfolio/details/" + user)
-      .then((response) => response.json())
-      .then((data) => setDetails(data));
-  };
-  const recipientPhoneNumber = `${details.phoneNumber}`;
+const Contactmestyle2 = (props) => {
+  
+  const recipientPhoneNumber = `${props.phoneNumber}`;
 
   return (
     <section>
@@ -55,7 +45,7 @@ const Contactmestyle2 = () => {
               Media sites.
             </p>
             <div class="flex flex-wrap w-full mt-1 -mx-4 text-left">
-              {details.phoneNumber ? (
+              {props.phoneNumber ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
                   <button
                     onClick={() => sendWhatsAppMessage(recipientPhoneNumber)}
@@ -67,9 +57,9 @@ const Contactmestyle2 = () => {
               ) : (
                 <></>
               )}
-              {details.linkedin ? (
+              {props.linkedin ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
-                    <a href={details.linkedin}>
+                    <a href={props.linkedin}>
                   <button class="items-center block px-2 py-1 text-base font-medium text-center bg-blue-700 text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     LinkedIn
                    
@@ -79,9 +69,9 @@ const Contactmestyle2 = () => {
               ) : (
                 <></>
               )}
-              {details.facebook ? (
+              {props.facebook ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
-                    <a href={details.facebook}>
+                    <a href={props.facebook}>
                   <button class="items-center block px-2 py-1 text-base font-medium text-center bg-blue-600 text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     Facebook
                   </button></a>
@@ -89,11 +79,11 @@ const Contactmestyle2 = () => {
               ) : (
                 <></>
               )}
-              {details.instagram ? (
+              {props.instagram ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
-                    <a href={details.instagram}>
+                    <a href={props.instagram}>
                   <button
-                    onClick={details.instagram}
+                    onClick={props.instagram}
                     class="items-center block px-2 py-1 text-base font-medium text-center bg-orange-400 text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                   >
                     instagram
@@ -103,9 +93,9 @@ const Contactmestyle2 = () => {
               ) : (
                 <></>
               )}
-              {details.twitter ? (
+              {props.twitter ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
-                    <a href={details.twitter}>
+                    <a href={props.twitter}>
                   <button class="items-center block px-6 py-1 text-base font-medium text-center bg-sky-500 text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     twitter
                   </button>
@@ -115,9 +105,9 @@ const Contactmestyle2 = () => {
                 <></>
               )}
 
-              {details.snapchat ? (
+              {props.snapchat ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
-                    <a href={details.snapchat}>
+                    <a href={props.snapchat}>
                   <button class="items-center block px-3 py-1 text-base font-medium text-center bg-yellow-300 text-black transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     snapchat
                   </button>
@@ -126,9 +116,9 @@ const Contactmestyle2 = () => {
               ) : (
                 <></>
               )}
-              {details.youtube ? (
+              {props.youtube ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-/4">
-                     <a href={details.youtube}>
+                     <a href={props.youtube}>
                   <button class="items-center block px-3 py-1 text-base font-medium text-center bg-red-600 text-white transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">
                     youtube
                   </button>

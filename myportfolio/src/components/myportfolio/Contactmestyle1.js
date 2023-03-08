@@ -13,20 +13,10 @@ function sendWhatsAppMessage(phoneNumber) {
     window.open(url, "_blank");
   }
 
-const Contactmestyle1 = () => {
-    const [details, setDetails] = useState("");
-  useEffect(() => {
-    getDetails();
-  }, []);
+const Contactmestyle1 = (props) => {
+   
 
-  const getDetails = async () => {
-    const user = await localStorage.getItem("email");
-    fetch("http://localhost:5000/portfolio/details/" + user)
-      .then((response) => response.json())
-      .then((data) => setDetails(data));
-  };
-
-  const recipientPhoneNumber = `${details.phoneNumber}`;
+  const recipientPhoneNumber = `${props.phoneNumber}`;
 
   return (
     <section>
@@ -37,52 +27,52 @@ const Contactmestyle1 = () => {
         <h1 class="text-neutral-800 md:text-7xl lg:text-5xl mb-8 text-4xl font-bold leading-none tracking-tighter">Get in Touch</h1>
         {/* <p class="mb-8 text-base leading-relaxed text-left text-gray-500">Free and Premium themes, UI Kit's, templates and landing pages built with Tailwind CSS, HTML &amp; Next.js.</p> */}
         <div class="flex flex-wrap w-full mt-2 -mx-4 text-left">
-        {details.linkedin ? (
+        {props.linkedin ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.linkedin}>
+                  <a href={props.linkedin}>
                     <img src={linkedin} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-          {details.facebook ? (
+          {props.facebook ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.facebook}>
+                  <a href={props.facebook}>
                     <img src={facebook} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-          {details.instagram ? (
+          {props.instagram ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.instagram}>
+                  <a href={props.instagram}>
                     <img src={instagram} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-          {details.twitter ? (
+          {props.twitter ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.twitter}>
+                  <a href={props.twitter}>
                     <img src={twitter} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-              {details.snapchat ? (
+              {props.snapchat ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.snapchat}>
+                  <a href={props.snapchat}>
                     <img src={snapchat} />
                   </a>
                 </div>
               ) : (
                 <></>
               )}
-              {details.phoneNumber ? (
+              {props.phoneNumber ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
                   <a href="" >
                     <img src={whatsapp} onClick={() => sendWhatsAppMessage(recipientPhoneNumber)} />
@@ -91,9 +81,9 @@ const Contactmestyle1 = () => {
               ) : (
                 <></>
               )}
-              {details.youtube ? (
+              {props.youtube ? (
                 <div class="w-20 p-4 mt-4 sm:w-20">
-                  <a href={details.youtube}>
+                  <a href={props.youtube}>
                     <img src={youtube} />
                   </a>
                 </div>
