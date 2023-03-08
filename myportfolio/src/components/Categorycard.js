@@ -13,9 +13,17 @@ import Profilescard from "./Profilescard";
 import Emptytext from "./text/Emptytext";
 
 const Categorycard = () => {
-  const [state,setState] = useState(0);
+  const [state, setState] = useState(0);
+  const CatTabs = ({ category }) => {
+    // const [details, setDetails] = useState(null);
+    // const checkCat = ()=>{
+    //   cat="Software"
+    //   fetch("http://localhost:5000/portfolio/" + cat)
+    //     .then((response) => response.json())
+    //     .then((data) => setDetails(data));
+      
+    // }
 
-  const CatTabs = () => {
     if (state === 0) {
       return (
         <>
@@ -35,6 +43,7 @@ const Categorycard = () => {
     if (state === 2) {
       return (
         <>
+        {/* <Emptytext/> */}
           <Profiletext />
           <Profilescard category="Entertainment" />
         </>
@@ -48,8 +57,6 @@ const Categorycard = () => {
         </>
       );
     }
-    
-    
 
     if (state === 4) {
       return (
