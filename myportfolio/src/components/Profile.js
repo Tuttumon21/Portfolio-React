@@ -1,7 +1,9 @@
 import React,{useEffect, useState} from "react";
 import {useNavigate, Link } from "react-router-dom";
 
+
 const Profile = ({details}) => {
+  const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false)
   useEffect(()=>{
     console.log(details)
@@ -40,7 +42,7 @@ const Profile = ({details}) => {
 }
 
   return (
-   <div>
+   <div class="grid w-full grid-cols-6 mx-auto">
     {/* {showAlert?<ProfileAlert/>:null}  */}
     {
       details && details.map((d,key)=>(  
@@ -63,12 +65,14 @@ const Profile = ({details}) => {
             </h4>
 
             <div class="mt-2">
-              <a
+              <button
                 // href={props.href}
+               // onClick={() => window.open(/viewprofile/`${d.email}`, "_blank")}
+               onClick={() => window.open(`/viewprofile/${d.email}`, "_blank")}
                 class="flex items-center justify-center w-full px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                View profile{" "}
-              </a>
+                View profile
+              </button>
             </div>
           </div>
         </div>

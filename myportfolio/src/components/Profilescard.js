@@ -11,14 +11,8 @@ const Profilescard = ({ category }) => {
   }, []);
 
   return (
-    <div className="flex items-center justify-start p-2 h-auto w-full">
-      {details ? (
-        <div class="grid w-full grid-cols-6 mx-auto">
+    <div>
           <Profile details={details} />
-        </div>
-      ) : (
-        <Emptytext />
-      )}
     </div>
   );
 };
