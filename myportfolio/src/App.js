@@ -9,19 +9,24 @@ import Services from "./components/Services";
 import Index from "./components/Index";
 import TabsProfile from "./components/TabsProfile";
 import Myportfolio from "./components/Myportfolio";
+import Viewprofile from "./components/Viewprofile";
+var u_email = localStorage.getItem("email")
 
 function App() {
+
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
+      {/* <Route path="/" element= {<Home />} /> */}
+      <Route path="/" element={u_email ? (<Index />):(<Home />)}></Route>
+      {/* <Route path="/login" element={<Login />} /> */}
       <Route path="/test" element={<Test/>}/>
-      <Route path="/Index" element={<Index/>}/>
-      <Route path="/ProfileForm" element={<ProfileForm/>}/>
-      <Route path="/AboutForm" element={<AboutForm/>}/>
-      <Route path="/services" element={<Services/>}/>
+      <Route path="/Index"  element={u_email ? (<Index />):(<Home />)}/>
+      {/* <Route path="/ProfileForm" element={<ProfileForm/>}/> */}
+      {/* <Route path="/AboutForm" element={<AboutForm/>}/> */}
+      {/* <Route path="/services" element={<Services/>}/> */}
       <Route path="/Profile" element={<TabsProfile/>}/>
-      <Route path="/myportfolio" element={<Myportfolio/>}/>
+      <Route path="/viewprofile/:email" element={<Viewprofile/>}/>
+      <Route path="/Myportfolio" element={<Myportfolio/>}/>
 
     </Routes>
   );

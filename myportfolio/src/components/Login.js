@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate,Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 
+
 export const Login = () => {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -32,6 +33,7 @@ export const Login = () => {
         localStorage.setItem("email", data.email);
         console.log(localStorage.getItem("user"));
         //setIsLoggedIn(true);
+        window.location.reload();
         navigate('/Index', { replace: true });
         // alert("login Successfully");
       }
