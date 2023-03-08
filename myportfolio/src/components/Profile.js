@@ -69,10 +69,13 @@ const Profile = ({details}) => {
                 // href={props.href}
                // onClick={() => window.open(/viewprofile/`${d.email}`, "_blank")}
                onClick={() => window.open(`/viewprofile/${d.email}`, "_blank")}
+              
                 class="flex items-center justify-center w-full px-10 py-3 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
+                 
                 View profile
               </button>
+              {/* <Link to={`/viewprofile/${d.email}`}>View</Link> */}
             </div>
           </div>
         </div>
