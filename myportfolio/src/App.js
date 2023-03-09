@@ -10,6 +10,7 @@ import Index from "./components/Index";
 import TabsProfile from "./components/TabsProfile";
 import Myportfolio from "./components/Myportfolio";
 import Viewprofile from "./components/Viewprofile";
+import Helppage from "./components/Helppage";
 var u_email = localStorage.getItem("email")
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
       <Route path="/Profile" element={<TabsProfile/>}/>
       <Route path="/viewprofile/:email" element={<Viewprofile/>}/>
       <Route path="/Myportfolio" element={<Myportfolio/>}/>
+      <Route path="/Help" element={<Helppage/>}/>
 
     </Routes>
   );
