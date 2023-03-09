@@ -41,8 +41,7 @@ const Myportfolio = () => {
       ) : (
         <div>
           <Navbar />
-          <h3>Name: {details.firstname}</h3>
-          <p>Email: {details.email}</p>
+          
 
           {details.style === null && <></>}
           {details.style === "1" && <Intro phoneNumber={details.phoneNumber} category={details.category} jobtitle={details.jobtitle} firstname={details.firstname} lastname={details.lastname} desc={details.desc} imagePath={details.imagePath}/>}

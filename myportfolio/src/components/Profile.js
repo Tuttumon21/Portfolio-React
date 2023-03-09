@@ -5,41 +5,45 @@ import {useNavigate, Link } from "react-router-dom";
 const Profile = ({details}) => {
   const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false)
-  useEffect(()=>{
-    console.log(details)
-    if(details===null){
-      setShowAlert(true);
-    }
-  })
-  const ProfileAlert = () =>{
 
-    // setTimeout(() => {
+
+  // useEffect(()=>{
+  //   console.log(details)
+  //   if(details===null){
+  //     setShowAlert(true);
+  //   }
+  // })
+
+//   const ProfileAlert = () =>{
+
+//     // setTimeout(() => {
       
-    //   navigate("/Profile", { replace: true });
-    // }, 10000);
-  return<div class="overflow-y-auto fixed inset-0 z-10 transition-opacity bg-gray-400 bg-opacity-75" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-<div class="flex items-end justify-center min- px-4 pt-4 pb-20 text-center sm:block sm:p-0">
-    <div class="transition-opacity bg-blue-500 bg-opacity-75" aria-hidden="true"></div>
-    <span class="hidden sm:inline-block sm:align-middle sm:" aria-hidden="true">​</span>
-    {/* <!--Modal panel : This is where you put the pop-up's content, the div on top this coment is the wrapper --> */}
-    <div class="inline-block p-5 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-2xl lg:p-16 sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
-        <div>
-            <div class="mt-3 text-left sm:mt-5">
-                <h1 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-blue-700">Notification</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-800">No Profiles Found!</p>
-            </div>
-        </div>
-        <div class="mt-6 sm:flex">
-            <div class="mt-3 rounded-lg sm:mt-0">
-                <button onClick={()=>setShowAlert(false)} class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
-            </div>
-            
-        </div>
-    </div>
-</div>
-</div>
+//     //   navigate("/Profile", { replace: true });
+//     // }, 10000);
 
-}
+//   return<div class="overflow-y-auto fixed inset-0 z-10 transition-opacity bg-gray-400 bg-opacity-75" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+// <div class="flex items-end justify-center min- px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+//     <div class="transition-opacity bg-blue-500 bg-opacity-75" aria-hidden="true"></div>
+//     <span class="hidden sm:inline-block sm:align-middle sm:" aria-hidden="true">​</span>
+//     {/* <!--Modal panel : This is where you put the pop-up's content, the div on top this coment is the wrapper --> */}
+//     <div class="inline-block p-5 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-2xl lg:p-16 sm:my-8 sm:align-middle sm:max-w-xl sm:w-full">
+//         <div>
+//             <div class="mt-3 text-left sm:mt-5">
+//                 <h1 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-blue-700">Notification</h1>
+//                 <p class="mx-auto text-base leading-relaxed text-gray-800">No Profiles Found!</p>
+//             </div>
+//         </div>
+//         <div class="mt-6 sm:flex">
+//             <div class="mt-3 rounded-lg sm:mt-0">
+//                 <button onClick={()=>setShowAlert(false)} class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
+//             </div>
+            
+//         </div>
+//     </div>
+// </div>
+// </div>
+
+// }
 
   return (
    <div class="grid w-full grid-cols-6 mx-auto">

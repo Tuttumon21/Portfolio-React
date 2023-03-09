@@ -53,9 +53,7 @@ const ProfileForm = () => {
 
     const previewUrl = URL.createObjectURL(file);
     setFile(file);
-    // const fileName = event.target.files[0].name;
-    // console.log("image" + fileName);
-    // setImagePreview(previewUrl);
+    
   };
   async function onSubmit(e) {
     e.preventDefault();
@@ -70,9 +68,8 @@ const ProfileForm = () => {
     formData.append("email", form.email);
     formData.append("desc", form.desc);
     formData.append("style", style);
-    // formData.append("event", form.event);
     formData.append("imageFile", file);
-    // formData.append("likes", 1);
+   
     try {
       const url = "http://localhost:5000/portfolio/add";
       const response = await fetch(url, {

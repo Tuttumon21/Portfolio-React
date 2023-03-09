@@ -12,8 +12,10 @@ import React, { useState, useEffect } from "react";
 import Profilescard from "./Profilescard";
 import Emptytext from "./text/Emptytext";
 
-const Categorycard = () => {
+const Categorycard = ({category}) => {
   const [state, setState] = useState(0);
+  
+  
   const CatTabs = ({ category }) => {
     // const [details, setDetails] = useState(null);
     // const checkCat = ()=>{
@@ -21,8 +23,19 @@ const Categorycard = () => {
     //   fetch("http://localhost:5000/portfolio/" + cat)
     //     .then((response) => response.json())
     //     .then((data) => setDetails(data));
+  //   const [selectedCategory, setSelectedCategory] = useState();
+  // const [profiles, setProfiles] = useState([]);
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/portfolio/details"+ selectedCategory).then((data) => setProfiles(data));
+  // }, [selectedCategory]);
       
     // }
+   
+      
+      
+      
+   
+
 
     if (state === 0) {
       return (
@@ -43,6 +56,7 @@ const Categorycard = () => {
     if (state === 2) {
       return (
         <>
+        
         {/* <Emptytext/> */}
           <Profiletext />
           <Profilescard category="Entertainment" />
