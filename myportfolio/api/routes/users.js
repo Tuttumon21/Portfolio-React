@@ -16,6 +16,15 @@ userRoutes.route("/user").get(function (req, res) {
       res.json(result);
     });
 });
+// This section will help you get a single record by email
+userRoutes.route("/users/details/:email").get(function (req, res) {
+  let db_connect = dbo.getDb("myportfolio");
+  let myquery = { email: (req.params.email) };
+  db_connect.collection("users").findOne(myquery, function (err, result) {
+    if (err) throw err;
+    res.json(result);
+  });
+});
 
 // This section will help you get a single record by id
 userRoutes.route("/user/:id").get(function (req, res) {
@@ -107,6 +116,16 @@ userRoutes.route("/update/:id").post(function (req, response) {
 userRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
+  db_connect.collection("users").deleteOne(myquery, function (err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    response.json(obj);
+  });
+});
+// This section will help you delete a record by email?
+userRoutes.route("/users/:email").delete((req, response) => {
+  let db_connect = dbo.getDb();
+  let myquery = { email:(req.params.email) };
   db_connect.collection("users").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");
