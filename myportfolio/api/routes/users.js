@@ -122,13 +122,13 @@ userRoutes.route("/:id").delete((req, response) => {
     response.json(obj);
   });
 });
-// This section will help you delete a record by email?
+// This section will help you delete a Account by email?
 userRoutes.route("/users/:email").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { email:(req.params.email) };
   db_connect.collection("users").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
-    console.log("1 document deleted");
+    // console.log("1 document deleted");
     response.json(obj);
   });
 });
