@@ -46,7 +46,7 @@ const Portter = () => {
 }
 
   return (
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full place-items-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <div class="flex flex-col items-center py-10">
         <img
           class="w-24 h-24 mb-3 object-cover rounded-full shadow-lg"
