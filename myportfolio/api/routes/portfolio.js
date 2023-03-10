@@ -294,7 +294,7 @@ portRoutes.route("/portfolio/:email").delete((req, response) => {
   let myquery = { email:(req.params.email) };
   db_connect.collection("portfolio").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
-    console.log("1 document deleted");
+    // console.log("1 document deleted");
     response.json(obj);
   });
 });
