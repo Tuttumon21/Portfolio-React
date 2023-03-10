@@ -288,5 +288,15 @@ portRoutes.route("/:id").delete((req, response) => {
     response.json(obj);
   });
 });
+// This section will help you delete a portfolio Details by email
+portRoutes.route("/portfolio/:email").delete((req, response) => {
+  let db_connect = dbo.getDb();
+  let myquery = { email:(req.params.email) };
+  db_connect.collection("portfolio").deleteOne(myquery, function (err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    response.json(obj);
+  });
+});
 
 module.exports = portRoutes;
