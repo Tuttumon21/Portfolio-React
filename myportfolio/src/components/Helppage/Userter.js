@@ -1,6 +1,5 @@
 // import React from 'react'
 import React, { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom";
 import {useNavigate, Link } from "react-router-dom";
 import imga from "./undraw_playing_cards_cywn.png";
 
@@ -28,8 +27,8 @@ const Userter = () => {
       .then((data) => setDetails(data));
   };
 
-  async function deleteRecord(email) {
-    console.log(email)
+  async function deleteAccount(email) {
+    // console.log(email)
     const response = await fetch(`http://localhost:5000/users/${email}`, {
       method: "DELETE"
     });
@@ -59,7 +58,7 @@ const Userter = () => {
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{details.firstname} {details.lastname}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{details.email}</span>
         <div class="flex items-center mt-4 space-x-3 md:mt-6">
-            <button onClick={() => deleteRecord(details.email)} onMouseOver={handleMouseOver}
+            <button onClick={() => deleteAccount(details.email)} onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave} class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-red-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Terminate</button>
             {showPopup && (
             <div
