@@ -1,27 +1,18 @@
-
 // import React from 'react'
-import Navbar from './Navbar'
-// import {useState} from 'react'
+import React, { useState, useEffect } from "react";
 
-import Profile from './Profile';
-import React, { useState } from 'react';
-
-
-
-
-
-function Test() {
-    // const [state,setState] = useState(false)
-    
-  
+const Test = () => {
+  const [details, setDetails] = useState("");
+  useEffect(() => {
+     fetch("http://localhost:5000/portfolio/")
+      .then((response) => response.json())
+      .then((data) => setDetails(data));
+  }, []);
    
-    
-  return (
-    <>
-     hi
+     
 
-    </>
-  )
+  return(<>hi</>)
+
 }
 
 export default Test
