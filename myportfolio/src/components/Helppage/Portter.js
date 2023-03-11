@@ -57,7 +57,7 @@ const Portter = () => {
           {details.firstname}{details.lastname}
         </h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">
-          {details.category}/: {details.subcategory}
+          {details.category} /: {details.subcategory}
         </span>
         <span class="text-sm text-gray-500 dark:text-gray-400">
           {details.email}
@@ -88,7 +88,7 @@ const Portter = () => {
                 class="bg-yellow-200 border-yellow-600 text-yellow-600 border-l-4 p-4"
                 role="alert"
               >
-                <p class="font-bold">Alert</p>
+                <p class="font-bold">Alert Portfolio</p>
                 <p>Are you sure you want to Delete the Portfolio Details</p>
               </div>
             </div>
