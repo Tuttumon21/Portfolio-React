@@ -57,7 +57,7 @@ const Categorycard = ({category}) => {
       return (
         <>
         
-        {/* <Emptytext/> */}
+     
           <Profiletext />
           <Profilescard category="Entertainment" />
         </>
