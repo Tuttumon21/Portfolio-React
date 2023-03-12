@@ -27,8 +27,8 @@ function App() {
       {/* <Route path="/services" element={<Services/>}/> */}
       <Route path="/Profile" element={<TabsProfile/>}/>
       <Route path="/viewprofile/:email" element={<Viewprofile/>}/>
-      <Route path="/Myportfolio" element={<Myportfolio/>}/>
-      <Route path="/Help" element={<Helppage/>}/>
+      <Route path="/Myportfolio" element={u_email ? (<Myportfolio/>):(<Home/>)}/>
+      <Route path="/Help" element={u_email ? (<Helppage/>):(<Home/>)}/>
 
     </Routes>
   );
