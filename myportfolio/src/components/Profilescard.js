@@ -17,7 +17,7 @@ const Profilescard = ({ category }) => {
   
 
   if (!details) {
-    return <Emptytext />;
+    return <Emptytext text={`No ${category} Profile available`}/>;
   }
 
   return (
