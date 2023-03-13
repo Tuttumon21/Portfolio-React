@@ -101,7 +101,7 @@ const Categorycard = ({category}) => {
             }}
             className="card p-2"
           >
-            <Category href="#1" lnk={pic1} head="ALL Profiles" />
+            <Category href="#all" lnk={pic1} head="ALL Profiles" />
           </div>
           <div
             onClick={() => {
@@ -109,7 +109,7 @@ const Categorycard = ({category}) => {
             }}
             className="card p-2"
           >
-            <Category href="#2" lnk={pic2} head="Software" />
+            <Category href="#software" lnk={pic2} head="Software" />
           </div>
           <div
             onClick={() => {
@@ -117,7 +117,7 @@ const Categorycard = ({category}) => {
             }}
             className="card p-2"
           >
-            <Category href="#2" lnk={pic3} head="Entertainment" />
+            <Category href="#Entertainment" lnk={pic3} head="Entertainment" />
           </div>
           <div
             onClick={() => {
@@ -133,7 +133,7 @@ const Categorycard = ({category}) => {
             }}
             className="card p-2"
           >
-            <Category href="#4" lnk={pic5} head="Medical" />
+            <Category href="#medical" lnk={pic5} head="Medical" />
           </div>
           <div
             onClick={() => {
@@ -141,7 +141,7 @@ const Categorycard = ({category}) => {
             }}
             className="card p-2"
           >
-            <Category href="#5" lnk={pic6} head="Education" />
+            <Category href="#education" lnk={pic6} head="Education" />
           </div>
         </div>
       </div>

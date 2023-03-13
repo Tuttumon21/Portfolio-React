@@ -36,7 +36,7 @@ const Myportfolio = () => {
         <div>
           <Navbar />
 
-          <Emptytext />
+          <Emptytext text="fill your Details first" />
         </div>
       ) : (
         <div>

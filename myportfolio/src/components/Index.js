@@ -75,7 +75,7 @@ const Index = () => {
   
   
   return (
-    <div className="Index">  
+    <div className="Index overflow-hidden">  
       {showAlert?<ShowAlert/>:null}    
       <Navbar />
       <Welcometext />

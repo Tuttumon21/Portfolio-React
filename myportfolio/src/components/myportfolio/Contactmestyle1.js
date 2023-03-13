@@ -100,7 +100,7 @@ const Contactmestyle1 = (props) => {
           <div class="relative w-full max-w-lg">
             {/* <div class="bg-violet-300 -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob absolute top-0 rounded-full"></div> */}
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.6253260825245!2d76.29106701404498!3d10.013902992830126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b081c84db3aa2e3%3A0x2f6347e37c44cc30!2sSchool%20of%20Technology%20and%20Applied%20Sciences%20(STAS)!5e0!3m2!1sen!2sin!4v1646479972384!5m2!1sen!2sin"
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15697.682218151197!2d76.28941462010933!3d10.01809845365926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b081c6b5edc1005%3A0x9345f5fa44ff5d3e!2sEdappally%2C%20Kochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1646480648658!5m2!1sen!2sin"
         title="STAS Edappally Map"
         width="100%"
         height="450"
