@@ -51,16 +51,19 @@ const Userter = () => {
 }
 
   return (
-    <div class="w-full place-items-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full place-items-center bg-white border border-gray-200 rounded-lg shadow-sm  dark:bg-gray-200 dark:border-gray-100">
     
-    <div class="flex flex-col items-center py-10">
+    <div class="animate__animated animate__zoomInLeft flex flex-col items-center py-10">
     <img class="w-24 h-24 object-cover mb-3 rounded-full shadow-lg" src={imga} alt="profile.jpg"/>
         <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{details.firstname} {details.lastname}</h5>
         <span class="text-sm text-gray-500 dark:text-gray-400">{details.email}</span>
         <div class="flex items-center mt-4 space-x-3 md:mt-6">
             <button onClick={() => deleteAccount(details.email)} onMouseOver={handleMouseOver}
-            onMouseLeave={handleMouseLeave} class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-red-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Terminate</button>
-            {showPopup && (
+            onMouseLeave={handleMouseLeave} class="animate__animated animate__slideInUp animate__slower inline-flex items-center px-4 py-2 text-sm font-medium text-center text-red-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700">Terminate</button>
+            
+        </div>
+    </div>
+    {showPopup && (
             <div
               style={{
                 position: "absolute",
@@ -80,8 +83,6 @@ const Userter = () => {
               </div>
             </div>
           )}
-        </div>
-    </div>
 </div>
   )
 }

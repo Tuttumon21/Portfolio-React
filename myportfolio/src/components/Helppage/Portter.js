@@ -46,8 +46,8 @@ const Portter = () => {
 }
 
   return (
-    <div class="w-full place-items-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <div class="flex flex-col items-center py-10">
+    <div class=" w-full place-items-center bg-white border border-gray-100 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
+      <div class="animate__animated animate__zoomInLeft flex flex-col items-center py-10">
         <img
           class="w-24 h-24 mb-3 object-cover rounded-full shadow-lg"
           src={details.imagePath}
@@ -69,16 +69,19 @@ const Portter = () => {
           <button onClick={() => deletePortfolio(details.email)}
             onMouseOver={handleMouseOver}
             onMouseLeave={handleMouseLeave}
-            class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-red-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
+            class="animate__animated animate__slideInUp animate__slower inline-flex items-center px-4 py-2 text-sm font-medium text-center text-red-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-700 dark:focus:ring-gray-700"
           >
             Terminate
           </button>
-          {showPopup && (
+         
+        </div>
+      </div>
+      {showPopup && (
             <div
               style={{
                 position: "absolute",
                 top:"100%",
-                left: "35%",
+                left:"35%",
                 backgroundColor: "white",
                 z: "-10",
                 opacity: "90%",
@@ -93,8 +96,6 @@ const Portter = () => {
               </div>
             </div>
           )}
-        </div>
-      </div>
     </div>
   );
 };

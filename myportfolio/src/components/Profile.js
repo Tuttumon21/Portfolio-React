@@ -13,7 +13,7 @@ const Profile = ({details}) => {
       details && details.map((d,key)=>(  
         <section>
           
-      <div class="flex flex-col w-full mt-2 px-5 py-12 mx-auto">
+      <div class="animate__animated animate__flipInX flex flex-col w-full mt-2 px-5 py-12 mx-auto">
         <div class="w-56 max-w-lg mx-auto my-4 bg-white shadow-xl rounded-xl">
           <img
             alt="team"

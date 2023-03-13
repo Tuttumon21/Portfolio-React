@@ -71,6 +71,7 @@ const ProfileForm = () => {
     formData.append("imageFile", file);
    
     try {
+      
       const url = "http://localhost:5000/portfolio/add";
       const response = await fetch(url, {
         method: "POST",
@@ -82,11 +83,12 @@ const ProfileForm = () => {
       });
       if (!response.ok) {
         const err = await response.json();
-        alert("login failed");
+        alert("Profile Error failed");
         console.log("Looks like there was a problem.", err);
         return;
       } else {
         const msg = await response.json();
+        
         window.location.reload();
         // setOpen(false);
         // getGroups();
@@ -112,18 +114,18 @@ const ProfileForm = () => {
         <div>
             <div class="mt-3 text-left sm:mt-5">
                 <h1 class="mb-8 text-2xl font-semibold leading-none tracking-tighter text-blue-700">Notification</h1>
-                <p class="mx-auto text-base leading-relaxed text-gray-800">Your portfolio details are incomplete!</p>
+                <p class="mx-auto text-base leading-relaxed text-gray-800">Your Portfolio Details Are Incomplete! Please Fill Remaining Details.</p>
             </div>
         </div>
         <div class="mt-6 sm:flex">
             <div class="mt-3 rounded-lg sm:mt-0">
                 <button onClick={()=>setShowAlert(false)} class="items-center block px-10 py-3.5 text-base font-medium text-center text-blue-600 transition duration-500 ease-in-out transform border-2 border-white shadow-md rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Cancel</button>
             </div>
-            <div class="mt-3 rounded-lg sm:mt-0 sm:ml-3">
+            {/* <div class="mt-3 rounded-lg sm:mt-0 sm:ml-3">
             <Link to="/Profile">
                 <button class="items-center block px-10 py-4 text-base font-medium text-center text-white transition duration-500 ease-in-out transform bg-blue-600 rounded-xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Go to Profile</button>
                 </Link>
-            </div>
+            </div> */}
         </div>
     </div>
 </div>
@@ -134,8 +136,8 @@ const ProfileForm = () => {
   return (
     <>
     {showAlert?<FillAlert/>:null} 
-      <div className="mt-10 mx-7 sm:mt-0">
-        <div className="md:grid md:grid-cols-3 md:gap-6">
+      <div className="animate__animated animate__fadeInUp my-10 mx-7 sm:mt-0">
+        <div className=" md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
               <h3 className="text-lg font-medium leading-6 text-gray-900">

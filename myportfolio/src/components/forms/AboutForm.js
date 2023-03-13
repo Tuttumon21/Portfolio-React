@@ -17,7 +17,7 @@ const AboutForm = () => {
       return { ...prev, ...value };
     });
   }
-console.log(user)
+// console.log(user)
 
 const handleFileInputChange = (event) => {
   const file = event.target.files[0];
@@ -52,11 +52,13 @@ async function onSubmit(e) {
     });
     if (!response.ok) {
       const err = await response.json();
-      alert("login failed");
+      alert("About Error");
       console.log("Looks like there was a problem.", err);
       return;
     } else {
       const msg = await response.json();
+      alert("About Details Added");
+      
       // window.location.reload();
       // setOpen(false);
       // getGroups();
@@ -69,7 +71,7 @@ async function onSubmit(e) {
 
   return (
     <>
-      <div className="mt-10 mx-7 sm:mt-0">
+      <div className="animate__animated animate__fadeInUp mt-10 mx-7 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">

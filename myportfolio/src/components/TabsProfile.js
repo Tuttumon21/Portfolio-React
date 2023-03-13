@@ -31,10 +31,10 @@ function TabsProfile() {
 
     }
   return (
-    <div>
+    <div className="overflow-hidden">
       <Navbar />
 
-      <div class="mb-4 mx-5 border-b border-gray-900 dark:border-gray-900">
+      <div class="animate__animated animate__fadeInDown mb-4 mx-5 border-b border-gray-900 dark:border-gray-900">
         <ul
           class="flex flex-wrap justify-center -mb-px text-sm font-medium text-center"
           id="myTab"
@@ -43,7 +43,7 @@ function TabsProfile() {
         >
           <li class="mr-2" role="presentation">
             <button onClick={ () => {setState(0)}}
-              class="inline-block p-4 border-b-2 rounded-t-lg"
+              class="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-blue-600 hover:border-gray-300 dark:hover:text-gray-300"
               id="profile-tab"
               data-tabs-target="#profile"
               type="button"
