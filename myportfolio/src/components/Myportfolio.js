@@ -39,7 +39,7 @@ const Myportfolio = () => {
           <Emptytext text="fill your Details first" />
         </div>
       ) : (
-        <div>
+        <div className=" overflow-hidden">
           <Navbar />
           
 

@@ -13,11 +13,11 @@ const Experiencestyle3 = (props) => {
         <div class="relative items-center w-full px-5 py-12 mx-auto md:px-12 lg:px-24 max-w-7xl bg-white shadow">
           <div class="pb-7 border-b border-gray-600">
             <h3 class="text-5xl font-semibold leading-6 text-blue-600">
-              Experiences
+              Experiences / Achievement
             </h3>
           </div>
           <div class="grid w-full my-10 grid-cols-1 gap-6 mx-auto lg:grid-cols-3">
-            <div class="p-6 shadow rounded-xl bg-emerald-400">
+            <div class="animate__animated animate__fadeInUpBig p-6 shadow rounded-xl bg-emerald-400">
               <img
                 class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
                 src={img1}
@@ -31,7 +31,7 @@ const Experiencestyle3 = (props) => {
                 {props.expe1desc}
               </p>
             </div>
-            <div class="p-6 shadow rounded-xl bg-fuchsia-400">
+            <div class="animate__animated animate__fadeInRightBig p-6 shadow rounded-xl bg-fuchsia-400">
               <img
                 class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
                 src={img2}
@@ -45,7 +45,7 @@ const Experiencestyle3 = (props) => {
                 {props.expe2desc}
               </p>
             </div>
-            <div class="p-6 shadow rounded-xl bg-rose-400">
+            <div class="animate__animated animate__fadeInDownBig p-6 shadow rounded-xl bg-rose-400">
               <img
                 class="object-cover object-center w-full mb-8 lg:h-48 md:h-36 rounded-xl"
                 src={img3}

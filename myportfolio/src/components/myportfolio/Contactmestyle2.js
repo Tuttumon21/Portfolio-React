@@ -15,10 +15,10 @@ const Contactmestyle2 = (props) => {
           <div class="w-full lg:max-w-lg lg:w-1/2 rounded-xl">
             <div>
               <div class="relative w-full max-w-lg">
-                <div class="absolute top-0 rounded-full bg-violet-300 -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                <div class="absolute top-0 rounded-full -left-4 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
 
-                <div class="absolute rounded-full bg-fuchsia-300 -bottom-24 right-20 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-                <div class="relative">
+                <div class="absolute rounded-full -bottom-24 right-20 w-72 h-72 mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                <div class="animate__animated animate__zoomInUp relative">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15697.682218151197!2d76.28941462010933!3d10.01809845365926!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b081c6b5edc1005%3A0x9345f5fa44ff5d3e!2sEdappally%2C%20Kochi%2C%20Kerala!5e0!3m2!1sen!2sin!4v1646480648658!5m2!1sen!2sin"
                     title="Edappally Map"
@@ -32,19 +32,19 @@ const Contactmestyle2 = (props) => {
             </div>
           </div>
           <div class="flex flex-col items-start mt-12 mb-16 text-left lg:flex-grow lg:w-1/2 lg:pl-6 xl:pl-24 md:mb-0 xl:mt-0">
-            <span class="mb-8 text-4xl font-bold tracking-widest text-blue-600">
+            <span class="animate__animated animate__slideInRight mb-8 text-4xl font-bold tracking-widest text-blue-600">
               {" "}
               Contact Me{" "}
             </span>
-            <h1 class="text-neutral-900 md:text-7xl lg:text-5xl mb-8 text-4xl font-bold leading-none tracking-tighter">
+            <h1 class="animate__animated animate__slideInRight text-neutral-900 md:text-7xl lg:text-5xl mb-8 text-4xl font-bold leading-none tracking-tighter">
               Get in Touch
             </h1>
 
-            <p class="mb-8 text-base leading-relaxed text-left text-gray-500">
+            <p class="animate__animated animate__slideInDown mb-8 text-base leading-relaxed text-left text-gray-500">
               We would love to hear from you! Please visit us at our Social
               Media sites.
             </p>
-            <div class="flex flex-wrap w-full mt-1 -mx-4 text-left">
+            <div class="animate__animated animate__lightSpeedInRight flex flex-wrap w-full mt-1 -mx-4 text-left">
               {props.phoneNumber ? (
                 <div class="w-1/4 p-4 mt-4 sm:w-1/4">
                   <button

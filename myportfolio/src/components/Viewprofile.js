@@ -36,7 +36,7 @@ const Viewprofile = () => {
     return <div>Loading... please wait... we are searching requested profile<Emptytext/></div>;
   }
   return (
-    <div>
+    <div className=" overflow-hidden">
      
       {user.style === null && <></>}
           {user.style === "1" && <Intro phoneNumber={user.phoneNumber} category={user.category} jobtitle={user.jobtitle} firstname={user.firstname} lastname={user.lastname} desc={user.desc} imagePath={user.imagePath}/>}

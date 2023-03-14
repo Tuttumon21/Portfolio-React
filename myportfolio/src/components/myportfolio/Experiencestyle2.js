@@ -14,9 +14,9 @@ const Experiencestyle2 = (props) => {
   </div>
   
   <div class="space-y-8 my-5 lg:divide-y lg:divide-gray-100">
-    <div class="py-8 pl-5 sm:flex lg:items-end group bg-green-300">
+    <div class="animate__animated animate__slideInRight py-8 pl-5 sm:flex lg:items-end group bg-green-300">
       <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
-        <img class="w-full rounded-md h-28 lg:w-28 object-cover" src={one} alt="text"/>
+        <img class="animate__animated animate__fadeInTopLeft animate__slow w-full rounded-md h-28 lg:w-28 object-cover" src={one} alt="text"/>
       </div>
       <div>
         
@@ -26,9 +26,9 @@ const Experiencestyle2 = (props) => {
         <p class="mt-2 text-lg text-gray-800">{props.expe1desc}</p>
       </div>
     </div>
-    <div class="py-8 pl-5 sm:flex lg:items-end group bg-sky-300">
+    <div class="animate__animated animate__slideInLeft py-8 pl-5 sm:flex lg:items-end group bg-sky-300">
       <div class="flex-shrink-0 mb-4 sm:mb-0 sm:mr-4">
-        <img class="w-full rounded-md h-28 lg:w-28 object-cover" src={two} alt="text"/>
+        <img class="animate__animated animate__fadeInBottomLeft animate__slow w-full rounded-md h-28 lg:w-28 object-cover" src={two} alt="text"/>
       </div>
       <div>
         <p class="mt-3 text-lg font-medium leading-6">
