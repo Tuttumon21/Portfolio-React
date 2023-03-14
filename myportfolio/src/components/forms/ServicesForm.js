@@ -34,7 +34,7 @@ const ServicesForm = () => {
 
   return (
     <>
-      <div className="animate__animated animate__fadeInUp mt-10 mx-7 sm:mt-0">
+      <div className="animate__animated animate__fadeInRight mt-10 mx-7 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">
             <div className="px-4 sm:px-0">
