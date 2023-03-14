@@ -137,7 +137,40 @@ portRoutes.route("/portfolio/add").post(upload.single('imageFile'),function (req
     
   });
 
+  // This section will help you update the profileForm ?? 
+portRoutes.route("/portfolio/update/profile/:uEmail").post(upload.single('imageFile'),function (req, response) {
+  let db_connect = dbo.getDb();
+  // upload.single("userAvatar"),
+  console.log(req.params.uEmail)
+  console.log(req.body)
+  let myquery = { email: (req.params.uEmail) };
+  let newvalues = {
+    $set: {
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+jobtitle:req.body.jobtitle,
+category:req.body.category,
+subcategory:req.body.subcategory,
+email:req.body.email,
+desc:req.body.desc,
+style:req.body.style,
+      imagePath: "http://localhost:5000/public/images/" + req.file.filename
+    },
+  };
+  // ,proPic:"http://localhost:5000/public/images/"+req.file.filename
+  db_connect
+  .collection("portfolio")
+  .updateOne(myquery, newvalues, function (err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    response.status(200).json(res);
+    // response.status(200).send("about details added");
+  });
+    
+  });
+
   // This section will help you update a record by uEmail
+
   // This section will help you update a about record by uEmail
 
   portRoutes.route("/portfolio/update/about/:uEmail").post(upload.single('imageFiles'), function (req, response) {

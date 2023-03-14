@@ -71,9 +71,24 @@ const ProfileForm = () => {
     formData.append("imageFile", file);
    
     try {
+      let response,url;
+
+      if(details){
+         url = "http://localhost:5000/portfolio/update/profile/"+ user;
+     response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        // "content-type": "multipart/form-data",
+      },
+      body: formData,
+    });
+
+      }else{
+
       
-      const url = "http://localhost:5000/portfolio/add";
-      const response = await fetch(url, {
+       url = "http://localhost:5000/portfolio/add";
+       response = await fetch(url, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -81,6 +96,9 @@ const ProfileForm = () => {
         },
         body: formData,
       });
+
+    }
+
       if (!response.ok) {
         const err = await response.json();
         alert("Profile Error failed");
