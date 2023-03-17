@@ -54,6 +54,7 @@ portRoutes.route("/user/:id").get(function (req, res) {
   });
 });
 
+//selecting subcategory from main category code!
 portRoutes.route("/portfolio/category/:cat").get(async (req, res) => {
   try {
     const db = await dbo.getDb();
