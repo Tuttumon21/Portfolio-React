@@ -17,6 +17,14 @@ const Portter = () => {
     getDetails();
   }, []);
 
+  const [alert, setAlert] = useState(null);
+  function handleAlert(message, type) {
+    setAlert({ message, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
+
   const getDetails = async () => {
     const user = localStorage.getItem("email");
     console.log(user)
@@ -38,7 +46,8 @@ const Portter = () => {
         return;
       } else {
         const data = await response.json();
-        alert("Deleted the Portfolio Details");
+        handleAlert(data.message, "success Deleted the Portfolio Details...");
+        // alert("Deleted the Portfolio Details");
         setTimeout(() => {
         window.location.reload();
       }, 2000);
@@ -46,6 +55,22 @@ const Portter = () => {
 }
 
   return (
+    <>
+    {alert && (
+      <div className={`alert alert-${alert.message}`} role="alert">
+        {alert.message}
+    <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+        <p class="font-bold">
+            Success
+        </p>
+        <p>
+        Deleted the Portfolio Details...
+        </p>
+    </div>
+    
+        
+     </div>
+    )}
     <div class=" w-full place-items-center bg-white border border-gray-100 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
       <div class="animate__animated animate__zoomInLeft flex flex-col items-center py-10">
         <img
@@ -97,6 +122,7 @@ const Portter = () => {
             </div>
           )}
     </div>
+    </>
   );
 };
 

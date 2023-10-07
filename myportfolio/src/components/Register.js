@@ -15,6 +15,15 @@ export const Register = ({setState}) => {
     });
   }
 
+  // const [alert, setAlert] = useState(null);
+  // function handleAlert(message, type) {
+  //   setAlert({ message, type });
+  //   setTimeout(() => {
+  //     setAlert(null);
+  //   }, 2000);
+  // }
+
+
   async function onSubmit(e) {
     e.preventDefault();
 
@@ -33,6 +42,11 @@ export const Register = ({setState}) => {
       alert(err.msg)
       return;      
     }else{
+      // handleAlert("success Register success...");
+      alert("Register success");
+      // setTimeout(() => {
+      //   setState(true);
+      // }, 2000);
       setState(true)
     }
     setForm({ firstname: "", lastname: "", email: "", password: "" });
@@ -40,6 +54,23 @@ export const Register = ({setState}) => {
 
   return (
     <>
+{/* 
+{alert && (
+  <div className={`alert alert-${alert.message}`} role="alert">
+    {alert.message}
+<div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+    <p class="font-bold">
+        Success
+    </p>
+    <p>
+        Register Successfully
+    </p>
+</div>
+
+    
+ </div>
+)} */}
+
       <script
         src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
         defer

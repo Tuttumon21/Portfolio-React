@@ -18,6 +18,13 @@ const AboutForm = () => {
     });
   }
 // console.log(user)
+const [alert, setAlert] = useState(null);
+  function handleAlert(message, type) {
+    setAlert({ message, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
 
 const handleFileInputChange = (event) => {
   const file = event.target.files[0];
@@ -57,7 +64,8 @@ async function onSubmit(e) {
       return;
     } else {
       const msg = await response.json();
-      alert("About Details Added");
+      // alert("About Details Added");
+      handleAlert(msg.message, "success About Details Updated...");
       
       // window.location.reload();
       // setOpen(false);
@@ -70,7 +78,23 @@ async function onSubmit(e) {
 
 
   return (
-    <>
+    <> 
+     {alert && (
+  <div className={`alert alert-${alert.message}`} role="alert">
+    {alert.message}
+<div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+    <p class="font-bold">
+        Success
+    </p>
+    <p>
+        About Details Updated...
+    </p>
+</div>
+
+    
+ </div>
+)}
+
       <div className="animate__animated animate__fadeInLeft mt-10 mx-7 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">

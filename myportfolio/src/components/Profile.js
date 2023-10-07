@@ -7,7 +7,7 @@ const Profile = ({details}) => {
   
 
   return (
-   <div class="grid w-full grid-cols-6 mx-auto">
+   <div class="grid w-full grid-cols-1 xl:grid-cols-6 lg:grid-cols-4 sm:grid-cols-3 mx-auto">
     
     {
       details && details.map((d,key)=>(  

@@ -19,6 +19,15 @@ const Userter = () => {
     getDetails();
   }, []);
 
+  const [alert, setAlert] = useState(null);
+  function handleAlert(message, type) {
+    setAlert({ message, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
+
+
   const getDetails = async () => {
     const user = localStorage.getItem("email");
     console.log(user)
@@ -40,7 +49,9 @@ const Userter = () => {
         return;
       } else {
         const data = await response.json();
-        alert("Deleted the user??");
+        handleAlert(data.message, "success Deleted the user Details...");
+
+        // alert("Deleted the user??");
         setTimeout(() => {
             localStorage.clear();
             
@@ -51,6 +62,22 @@ const Userter = () => {
 }
 
   return (
+    <>
+    {alert && (
+      <div className={`alert alert-${alert.message}`} role="alert">
+        {alert.message}
+    <div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+        <p class="font-bold">
+            Success
+        </p>
+        <p>
+        Deleted the user Details...
+        </p>
+    </div>
+    
+        
+     </div>
+    )}
     <div class="w-full place-items-center bg-white border border-gray-200 rounded-lg shadow-sm  dark:bg-gray-200 dark:border-gray-100">
     
     <div class="animate__animated animate__zoomInLeft flex flex-col items-center py-10">
@@ -84,6 +111,7 @@ const Userter = () => {
             </div>
           )}
 </div>
+</>
   )
 }
 

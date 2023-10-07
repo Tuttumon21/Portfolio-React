@@ -1,11 +1,19 @@
 import React from "react";
-
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const ServicesForm = () => {
   const { register, handleSubmit } = useForm();
   const user = localStorage.getItem("email");
   console.log(user);
+
+  const [alert, setAlert] = useState(null);
+  function handleAlert(message, type) {
+    setAlert({ message, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
 
   const saveForm = async (data) => {
     const formdata = { ...data, uEmail: user };
@@ -28,12 +36,29 @@ const ServicesForm = () => {
       return;
     } else {
       const data = await response.json();
-      alert("Services Updated...");
+      handleAlert(data.message, "success Services Updated...");
+      // alert("Services Updated...");
     }
   };
 
   return (
     <>
+    {alert && (
+  <div className={`alert alert-${alert.message}`} role="alert">
+    {alert.message}
+<div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+    <p class="font-bold">
+        Success
+    </p>
+    <p>
+        Services Updated...
+    </p>
+</div>
+
+    
+ </div>
+)}
+
       <div className="animate__animated animate__fadeInRight mt-10 mx-7 sm:mt-0">
         <div className="md:grid md:grid-cols-3 md:gap-6">
           <div className="md:col-span-1">

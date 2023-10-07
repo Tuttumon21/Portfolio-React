@@ -28,6 +28,14 @@ const ProfileForm = () => {
     });
   }
 
+  const [alert, setAlert] = useState(null);
+  function handleAlert(message, type) {
+    setAlert({ message, type });
+    setTimeout(() => {
+      setAlert(null);
+    }, 3000);
+  }
+
   useEffect(()=>{
     fetch("http://localhost:5000/portfolio/details/"+user)
     .then((response) => response.json())
@@ -106,7 +114,7 @@ const ProfileForm = () => {
         return;
       } else {
         const msg = await response.json();
-        
+        handleAlert(msg.message, "success Profile Updated...");
         window.location.reload();
         // setOpen(false);
         // getGroups();
@@ -153,6 +161,23 @@ const ProfileForm = () => {
 
   return (
     <>
+
+  {alert && (
+  <div className={`alert alert-${alert.message}`} role="alert">
+    {alert.message}
+<div class="bg-green-200 border-green-600 text-green-600 border-l-4 p-4 text-center" role="alert">
+    <p class="font-bold">
+        Success
+    </p>
+    <p>
+        Profile Updated...
+    </p>
+</div>
+
+    
+ </div>
+)}
+
     {showAlert?<FillAlert/>:null} 
       <div className="animate__animated animate__fadeInUp my-10 mx-7 sm:mt-0">
         <div className=" md:grid md:grid-cols-3 md:gap-6">
